@@ -1,0 +1,505 @@
+*{
+    margin: 0px;
+
+    body{
+        #wrapper{
+
+            header{
+                align-items: center;
+                background-color: #000;
+                display: flex;
+                height: 100px;
+                justify-content: center;
+                text-align: center;
+                
+                a{
+                    color: #fff;
+                    font-size: 24px;
+                    letter-spacing: 2px;
+                    margin: 0px 50px;
+                    text-decoration: none;
+                    
+                    &:hover{
+                        color: #2FA8EC;
+                        transition: 0.21s;
+                    }
+                }
+
+                &:hover{
+                    background-color: #1E1E1E;
+                    transition: 0.21s;
+                }
+            }
+
+            #haruki{
+                background-color: #F0EFEE;
+                padding: 75px 0px 0px 0px;
+                text-align: center;
+                
+                h2{
+                    color: #DFDFE0;
+                    font: normal 700 38px 'Raleway';
+                    letter-spacing: 0.6px;
+                }
+                
+                .container{
+                    .input_block{
+                        display: inline-block;
+                        margin: 0px 28px;
+                        padding: 100px 0px;
+                        position: relative;
+                        transition: 0.21s;
+                        vertical-align: top;
+
+                        &.animation{
+                            padding-bottom: 91px !important;
+                            padding-top: 91px !important;
+
+                            label{
+                                top: 59px !important;
+                            }
+
+                            input{
+                                padding: 21px 0px 22px 17px !important;
+                            }
+                        }
+                        
+                        label{
+                            color: #6A7989;
+                            font: normal 400 16px 'Helvetica Neue', sans-serif;
+                            left: 17px;
+                            pointer-events: none;
+                            position: absolute;
+                            top: 128px;
+                            transition: 0.21s;
+                        }
+
+                        input{
+                            background-color: transparent;
+                            border-bottom: solid 4px #6A7989;
+                            border-left: 0px;
+                            border-right: 0px;
+                            border-top: solid 4px #6A7989;
+                            color: #AFB5BB;
+                            font: normal 800 38px 'Helvetica Neue', sans-serif;
+                            padding: 12px 0px 13px 17px;
+                            transition: 0.21s;
+                            width: 340px;
+        
+                            &::placeholder{
+                                color: #6A7989;
+                            }
+                            &:focus{
+                                outline: none;
+                            }
+                        } 
+                    }
+                }
+            }
+            
+            #hoshi{
+                background-color: #F9F7F6;
+                padding: 75px 0px 100px 0px;
+                text-align: center;
+    
+                h2{
+                    color: #DFDFE0;
+                    font: normal 700 38px 'Raleway';
+                    letter-spacing: 0.6px;
+                }
+                
+                .container{
+                    .input_block{
+                        display: inline-block;
+                        margin: 0px 28px;
+                        padding: 120px 0px 0px 0px;
+                        position: relative;
+                        vertical-align: top;
+                        z-index: 0;
+
+                        &::after{
+                            bottom: 0px;
+                            content: "";
+                            height: 4px;
+                            left: 0px;
+                            position: absolute;
+                            transition: 0.21s;
+                            width: 0px;
+                        }
+
+                        &.animation{
+                            .hoshi_label{
+                                left: 110px !important;
+                            }
+
+                            .visible{
+                                transition: 0.21s !important;
+                                width: 55px !important;
+                            }
+                        }
+
+                        &.blue{
+                            &::after{
+                                background-color: #00AAFF;
+                                width: 350px;
+                            }
+                        }
+    
+                        &.green{
+                            &::after{
+                                background-color: #00FFAA;
+                                width: 350px;
+                            }
+                        }
+    
+                        &.red{
+                            &::after{
+                                background-color: #FF5500;
+                                width: 350px;
+                            }
+                        }
+
+                        .visible{
+                            color: #595F6E;
+                            font: normal 400 17px 'Helvetica Neue', sans-serif;  
+                            left: 4px;
+                            overflow: hidden;
+                            position: absolute;
+                            top: 115px;
+                            transition: 0s !important;
+                            width: 0px;
+                            z-index: 2;
+                        }
+
+                        .hoshi_label{
+                            color: #595F6E;
+                            font: normal 400 17px 'Helvetica Neue', sans-serif;  
+                            left: 4px;
+                            pointer-events: none;
+                            position: absolute;
+                            text-align: left;
+                            top: 146px;
+                            transition: 0.21s;
+                            z-index: -2;
+                        }
+
+                        input{
+                            background-color: transparent;
+                            border-bottom: solid 1px #6A7989;
+                            border-left: 0px;
+                            border-right: 0px;
+                            border-top: 0px;
+                            color: #595F6E;
+                            font: normal 400 24px 'Helvetica Neue', sans-serif;
+                            padding: 28px 0px 11px 5px;
+                            width: 345px;
+                            z-index: 1;
+        
+                            &:focus{
+                                outline: none;
+                            }
+                        }
+
+                        span{
+                            background-image: linear-gradient(to right, rgba(255,0,0,0), rgb(249, 247, 246));
+                            display: inline-block;
+                            height: 20px;
+                            left: 52px;
+                            position: absolute;
+                            top: 146px;
+                            width: 60px;
+                            z-index: -1;
+
+                            &::after{
+                                background-color: #F9F7F6;
+                                content: "";
+                                height: 20px;
+                                left: 60px;
+                                position: absolute;
+                                top: 0px;
+                                width: 60px;
+                            }
+                        }
+                    }
+                }
+            }
+    
+            #juro{
+                background-color: #2FA8EC;
+                padding: 75px 0px 0px 0px;
+                text-align: center;
+    
+                h2{
+                    color: #43B1EE;
+                    font: normal 700 38px 'Helvetica Neue', sans-serif;
+                    letter-spacing: 0.6px;
+                    margin-bottom: 100px;
+                }
+                
+                .container{
+                    .input_block{
+                        display: inline-block;
+                        margin: 0px 27px 100px 29px;
+                        padding: 2px 0px 0px 0px;
+                        position: relative;
+                        vertical-align: top;
+                        z-index: 0;
+
+                        &::after{
+                            background-color: #fff;
+                            content: "";
+                            height: 93px;
+                            left: 0px;
+                            position: absolute;
+                            transition: 0.21s;
+                            width: 359px;
+                            z-index: -1;
+                        }
+
+                        &.animation{
+                            &::after{
+                                background-color: #1784CD !important;
+                            }
+
+                            label{
+                                color: #fff;
+                                font: normal 400 12px 'Helvetica Neue', sans-serif;
+                                left: 14px;
+                                top: 14px;
+                            }
+
+                            input{
+                                background-color: #fff !important;
+                                margin: 35px 12px 0px 12px;
+                                padding: 13px 0px 14px 18px !important;
+                                width: 316px;
+                            }
+                        }
+
+                        label{
+                            color: #595F6E;
+                            font: normal 400 18px 'Helvetica Neue', sans-serif;
+                            left: 18px;
+                            pointer-events: none;
+                            position: absolute;
+                            top: 37px;
+                            transition: 0.21s;
+                            z-index: 1;
+                        }
+        
+                        input{
+                            background-color: transparent;
+                            border: none;
+                            color: #595F6E;
+                            font: normal 400 18px 'Helvetica Neue', sans-serif;
+                            padding: 35px 0px 36px 18px;
+                            transition: 0.3s;
+                            width: 340px;
+
+                            &:focus{
+                                outline: none;
+                            }
+                        }                        
+                    }
+                }
+            }
+    
+            #hideo{
+                background-color: #F9F7F6;
+                padding: 75px 0px 0px 0px;
+                text-align: center;
+    
+                h2{
+                    color: #AAAAAA;
+                    font: normal 700 38px 'Helvetica Neue', sans-serif;
+                    letter-spacing: 0.6px;
+                    margin-bottom: 100px;
+                }
+                
+                .container{
+                    .input_block{
+                        display: inline-block;
+                        margin: 0px 32px 100px 70px;
+                        padding: 2px 0px 0px 0px;
+                        position: relative;
+                        vertical-align: top;
+                        z-index: 0;
+
+                        &.animation{
+                            label{
+                                font-size: 14px;
+                                width: 58px !important;
+                            }
+                            
+                            input{
+                                margin-left: 0px !important;
+                                width: 282px !important;
+                            }
+                        }
+
+                        label{
+                            align-items: center;
+                            background-color: #899DDA;
+                            color: #fff;
+                            display: flex;
+                            font-size: 24px;
+                            height: 73px;
+                            justify-content: center;
+                            left: -50px;
+                            position: absolute;
+                            text-align: center;
+                            transition: 0.21s;
+                            width: 70px;
+                        }
+
+
+                        input{
+                            background-color: #fff;
+                            border: none;
+                            color: #595F6E;
+                            font: normal 1000 24px 'Helvetica Neue', sans-serif;
+                            margin-left: 20px;
+                            padding: 22px 0px 22px 17px;
+                            transition: 0.21s;
+                            width: 262px;    
+
+                            &:focus{
+                                outline: none;
+                            }
+                        }
+                    }
+                }
+            }
+    
+            #madoka{
+                background-color: #2F3238;
+                padding: 75px 0px 0px 0px;
+                text-align: center;
+    
+                h2{
+                    color: #43464C;
+                    font: normal 700 38px 'Helvetica Neue', sans-serif;
+                    letter-spacing: 0.6px;
+                    margin-bottom: 100px;
+                }
+                
+                .container{
+                    .input_block{
+                        display: inline-block;
+                        margin: 0px 27px 100px 27px;
+                        padding: 2px 0px 0px 0px;
+                        position: relative;
+                        vertical-align: top;
+                        
+                        &::before{
+                            background-color: #7A7593;
+                            content: "";
+                            display: inline-block;
+                            height: 3px;
+                            position: absolute;
+                            right: 0px;
+                            top: -1px;
+                            transition: 0.16s;
+                            transition-delay: 0.1s;
+                            width: 0px;
+                        }
+                        
+                        &::after{
+                            background-color: #7A7593;
+                            bottom: 0px;
+                            content: "";
+                            display: inline-block;
+                            height: 0px;
+                            position: absolute;
+                            right: 0px;
+                            transition: 0.18s;
+                            width: 3px;
+                        }
+
+                        &.animation{
+                            &::before{
+                                width: 358px;
+                            }
+                            
+                            &::after{
+                                height: 69px;
+                            }
+
+                            label{
+                                font: normal 400 14px 'Helvetica Neue', sans-serif !important;
+                                top: 80px !important;
+                            }
+
+                            span{
+                                height: 66px !important;
+                            }
+                        }
+
+                        &.zero_delay{
+                            &::before{
+                                transition: 0.18s !important;
+                                transition-delay: 0.18s !important;
+                            }
+
+                            &::after{
+                                transition: 0.18s !important;
+                                transition-delay: 0.34s !important;
+                            }
+
+                            span{
+                                transition: 0.18s !important;
+                                transition-delay: 0s !important;
+                            }
+                        }
+
+                        label{
+                            color: #7A7593;
+                            font: normal 400 18px 'Helvetica Neue', sans-serif;
+                            left: 18px;
+                            pointer-events: none;
+                            position: absolute;
+                            top: 24px;
+                            transition: 0.21s;
+                        }
+
+                        input{
+                            background-color: transparent;
+                            border-bottom: solid 3px #7A7593;
+                            border-width: 0px 0px 3px 0px;
+                            color: #7A7593;
+                            font: normal 400 18px 'Helvetica Neue', sans-serif;
+                            padding: 20px 0px 21px 18px;
+                            width: 340px;
+
+                            &:focus{
+                                outline: none;
+                            }
+                        }
+
+                        span{
+                            background-color: #7A7593;
+                            display: inline-block;
+                            height: 0px;
+                            left: 0px;    
+                            position: absolute;
+                            transition: 0.1s;
+                            transition-delay: 0.34s;
+                            vertical-align: top;
+                            width: 3px;
+                        }
+                    }
+                }
+            }
+    
+            footer{
+                background-color: #1E1E1E;
+                height: 150px;
+
+                &:hover{
+                    background-color: #000;
+                    transition: 0.21s;
+                }
+            }
+        }
+    }
+}

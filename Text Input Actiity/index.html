@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Input V1</title>
+    <link rel="stylesheet" href="./assets/css/custom/V1.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link href="https://fonts.cdnfonts.com/css/helvetica-neue-9" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/raleway-5" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="./assets/js/custom/my_script.js"></script>
+</head>
+<body>
+    <div id="wrapper">
+        <header>
+            <a href="index.html">V1</a>
+            <a href="v2.html">V2</a>
+        </header>
+
+        <section id="haruki">
+            <h2>Haruki</h2>
+            <div class="container">
+                <div class="input_block">
+                    <label>First Name</label>
+                    <input class="input_field haruki_input" type="text" name="fname">
+                </div>
+                <div class="input_block">
+                    <label>Last Name</label>
+                    <input class="input_field haruki_input" type="text" name="lname">
+                </div>
+                <div class="input_block">
+                    <label>Email</label>
+                    <input class="input_field haruki_input" type="text" name="email">
+                </div>
+            </div>
+        </section>
+
+        <section id="hoshi">
+            <h2>Hoshi</h2>
+            <div class="container">
+                <div class="input_block">
+                    <label class="visible">Name</label>
+                    <label for="hoshi_name" class="hoshi_label">Name</label>
+                    <span></span>
+                    <input class="input_field hoshi_input"  id="hoshi_name" type="text" name="name">
+                </div>
+                <div class="input_block" id="hoshi_street_container">
+                    <label class="visible">Street</label>
+                    <label for="hoshi_street" class="hoshi_label">Street</label>
+                    <span></span>
+                    <input class="input_field hoshi_input" id="hoshi_street" type="text" name="street">
+                </div>
+                <div class="input_block" id="hoshi_town_container">
+                    <label class="visible">Town</label>
+                    <label for="hoshi_town" class="hoshi_label">Town</label>
+                    <span></span>
+                    <input class="input_field hoshi_input" id="hoshi_town" type="text" name="town">
+                </div>
+            </div>
+        </section>
+
+        <section id="juro">
+            <h2>Juro</h2>
+            <div class="container">
+                <div class="input_block">
+                    <label>First Name</label>
+                    <input class="input_field juro_input" type="text" name="fname">
+                </div>
+                <div class="input_block">
+                    <label>Last Name</label>
+                    <input class="input_field juro_input" type="text" name="lname">
+                </div>
+                <div class="input_block">
+                    <label>Maiden Name</label>
+                    <input class="input_field juro_input" type="text" name="mname">
+                </div>
+            </div>
+        </section>
+
+        <section id="hideo">
+            <h2>Hideo</h2>
+            <div class="container">
+                <div class="input_block">
+                    <label><i class="fa fa-user" aria-hidden="true"></i></label>
+                    <input class="input_field hideo_input" type="text" name="username">
+                </div>
+                <div class="input_block">
+                    <label><i class="fa fa-envelope" aria-hidden="true"></i></label>
+                    <input class="input_field hideo_input" type="text" name="email">
+                </div>
+                <div class="input_block">
+                    <label><i class="fa fa-lock" aria-hidden="true"></i></label>
+                    <input class="input_field hideo_input" type="password" name="password">
+                </div>
+            </div>
+        </section>
+
+        <section id="madoka">
+            <h2>Madoka</h2>
+            <div class="container">
+                <div class="input_block">
+                    <label>Frequency</label>
+                    <input class="input_field madoka_input" type="text" name="frequency">
+                    <span></span>
+                </div>
+                <div class="input_block">
+                    <label>Weight</label>
+                    <input class="input_field madoka_input" type="text" name="weight">
+                    <span></span>
+                </div>
+                <div class="input_block">
+                    <label>Strength</label>
+                    <input class="input_field madoka_input" type="text" name="strength">
+                    <span></span>
+                </div>
+            </div>
+        </section>
+
+        <footer></footer>
+    </div>
+</body>
+</html>
