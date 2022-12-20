@@ -1,0 +1,137 @@
+*{
+    margin: 0px;
+
+    body{
+        background-color: #2C2D34;
+
+        header{
+            background-color: #1E1F25;
+            margin-bottom: 50px;
+            .container{
+                max-width: 612px;
+                margin: 0px auto;
+                
+                h1{
+                    padding: 20px 0px;
+                    color: #A3A3FF;
+                    display: inline-block;
+                    font: normal 800 22px 'Proxima Nova';
+                    letter-spacing: 1px;
+                    text-transform: uppercase;
+                    vertical-align: middle;
+                }
+            }
+        }
+
+        section{
+            .container{
+                max-width: 612px ;;
+                margin: 0px auto;
+
+                h3{
+                    color: #6D7186;
+                    font: normal 700 20px 'Proxima Nova';
+                    letter-spacing: 0.6px;
+                    margin-bottom: 10px;
+                    margin-right: 10px;
+                    text-transform: uppercase;
+                    margin-bottom: 30px;
+                }
+
+                #images_list{
+                    background-color: #1E1F25;
+                    width: 100% /* 612px 764px */;
+                    margin: 0px auto;
+                    border-radius: 20px;
+                    list-style: none;
+                    padding: 70px;
+                    font-size: 0px;
+                    
+                    li{
+                        height: 143px;
+                        width: 143px;
+                        margin: 5px 5px;
+                        display: inline-block;
+                        vertical-align: top;
+                        border-radius: 5px;
+                        transition: 0.28s;
+                        // background-color: red;
+                        color: #fff;
+                        font-size: 80px;
+                        text-align: center;
+
+                        &:hover{
+                            background-color: #A3A3FF;
+                        }
+                    }
+
+                    .disabled{
+                        pointer-events: none;
+                        -webkit-transform: scaleX(-1);
+                        transform: scaleX(-1);
+                    }
+
+                    .paired_value{
+                        pointer-events: none;
+                    }
+                    .front_card{
+                        background-color: #6666b8 !important;
+                        background-image: none !important;
+
+                        &:hover{
+                            background-color: #A3A3FF !important;
+                        }
+                    }
+
+                    li[data-value = "1"]{
+                        background-color: red;
+                        background-image:  url("../../img/0001.png");
+                        background-size: cover;
+                    }
+
+                    li[data-value = "2"]{
+                        background-color: orange;
+                        background-image:  url("../../img/0002.png");
+                        background-size: cover;
+                    }
+
+                    li[data-value = "3"]{
+                        background-color: yellow;
+                        background-image:  url("../../img/0003.png");
+                        background-size: cover;
+                    }
+
+                    li[data-value = "4"]{
+                        background-color: green;
+                        background-image:  url("../../img/0004.png");
+                        background-size: cover;
+                    }
+
+                    li[data-value = "5"]{
+                        background-color: blue;
+                        background-image:  url("../../img/0005.png");
+                        background-size: cover;
+                    }
+
+                    li[data-value = "6"]{
+                        background-color: indigo;
+                        background-image:  url("../../img/0006.png");
+                        background-size: cover;
+                    }
+
+                    li[data-value = "7"]{
+                        background-color: violet;
+                        background-image:  url("../../img/0007.png");
+                        background-size: cover;
+                    }
+
+                    li[data-value = "8"]{
+                        background-color: burlywood;
+                        background-image:  url("../../img/0008.png");
+                        background-size: cover;
+                    }
+                }
+            }
+        }
+    }
+}

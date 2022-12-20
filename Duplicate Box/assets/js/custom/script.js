@@ -1,4 +1,5 @@
 $(document).ready(function(){
+    
     $("body")
         .on("change", "#act1_select", activityOne)
         .on("change", "#act2_select", activityTwo)
