@@ -1,6 +1,6 @@
 $(document).ready(function(){
     $("body")
-        .on("click", "h1", loadTiles)           /* to generate li to #images_list */
+        .on("click", "button", loadTiles)           /* to generate li to #images_list */
         .on("click", ".close_card", flip)       /* to flip card when click */
 
         loadTiles();                            
