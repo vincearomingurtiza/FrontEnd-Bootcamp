@@ -1,6 +1,8 @@
+let matched_array = [];
+
 $(document).ready(function(){
     $("body")
-        .on("click", "button", loadTiles)           /* to generate li to #images_list */
+    .on("click", "button", loadTiles)           /* to generate li to #images_list */
         .on("click", ".close_card", flip)       /* to flip card when click */
 
         loadTiles();                            
@@ -28,14 +30,28 @@ function loadTiles(){
         let create_card         = $("<li>");
 
         /*  */
+        // let pet_types = ["dog", "cat", "fish"];
+        // for(let pet_index = 0; pet_index < pet_types.length; pet_index++){
+        //     create_card.attr("class","pet_box_"+ pet_types[pet_index]);
+        //     // create_card.addClass("pet_box_"+ pet_types[pet_index]);
+        // }
+        /**
+         * class="pet_box_fish"
+         */
+        
+        // for(let pet_index = 0; pet_index < pet_types.length; pet_index++){
+        //     create_card.addClass("pet_box_"+ pet_types[pet_index]);
+        // }
+        /**
+         * class="pet_box_dog pet_box_cat pet_box_fish"
+         */
+
         create_card.attr("data-value", get_array_element);
         create_card.addClass("front_card");
         create_card.addClass("close_card");
         $("#images_list").append(create_card);
     }
 };
-
-let matched_array = [];
 
 /* DOCU: To flip cards when click
  * Triggered by: .on("click", ".close_card", flip)
@@ -54,7 +70,7 @@ function flip(){
     if (matched_array.length == 2){
         if (matched_array [0] == matched_array [1]){
             $(".disabled.close_card").removeClass("close_card");
-        }else if (matched_array [0] != matched_array [1]){
+        } else {
             setTimeout(function(){
                 $(".disabled.close_card").addClass("front_card");
                 $(".disabled.close_card").removeClass("disabled");

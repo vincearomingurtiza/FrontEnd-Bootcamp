@@ -1,0 +1,83 @@
+* {
+  margin: 0px;
+}
+* body {
+  background-color: #2C2D34;
+}
+* body header {
+  background-color: #1E1F25;
+  margin-bottom: 25px;
+}
+* body header .container {
+  max-width: 660px;
+  margin: 0px auto;
+}
+* body header .container h1 {
+  color: #567254;
+  display: inline-block;
+  font: normal 800 22px 'Proxima Nova';
+  letter-spacing: 1px;
+  padding: 20px 0px;
+  text-transform: uppercase;
+  vertical-align: middle;
+}
+* body section .container {
+  max-width: 660px;
+  margin: 0px auto;
+  border-radius: 20px;
+  background-color: #1E1F25;
+  padding: 50px;
+  font-size: 0px;
+}
+* body section .container #selector_container {
+  margin-bottom: 25px;
+  display: flex;
+  justify-content: space-between;
+  gap: 50px;
+}
+* body section .container #selector_container ul {
+  list-style: none;
+  width: 50%;
+  padding: 0px;
+}
+* body section .container #selector_container ul li {
+  display: block;
+  letter-spacing: 0.6px;
+  font: normal 700 18px 'Proxima Nova';
+  color: #567254;
+  margin-bottom: 15px;
+}
+* body section .container #selector_container ul li select {
+  padding-left: 10px;
+  border-radius: 4px;
+  width: 100%;
+  height: 40px;
+  font: normal 700 18px 'Proxima Nova';
+  color: #6D7186;
+  background-color: #2C2D34;
+  border: none;
+  outline: none;
+}
+* body section .container #output_container {
+  width: 660px;
+  border-radius: 15px;
+  margin: 0px auto;
+}
+* body section .container #output_container table {
+  font-size: 100px;
+  color: #fff;
+  text-align: left;
+}
+* body section .container #output_container table tr td {
+  padding: 20px 0px;
+  text-align: center;
+  width: 65px;
+  background-color: #567254;
+  border-radius: 4px;
+  color: #1E1F25;
+  font: normal 700 18px 'Proxima Nova';
+  transition: 0.21s;
+}
+* body section .container #output_container table tr td:hover {
+  background-color: #7E8F6A;
+}
