@@ -1,0 +1,152 @@
+*{
+    margin: 0px;
+
+    body{
+        background-color: #2C2D34;
+
+        header{
+            background-color: #1E1F25;
+            margin-bottom: 50px;
+            .container{
+                margin: 0px auto;
+                max-width: 612px;
+                
+                h1{
+                    color: #A3A3FF;
+                    display: inline-block;
+                    font: normal 800 22px 'Proxima Nova';
+                    letter-spacing: 1px;
+                    padding: 20px 0px;
+                    text-transform: uppercase;
+                    vertical-align: middle;
+                }
+            }
+        }
+
+        section{
+            .container{
+                margin: 0px auto;
+                max-width: 612px ;;
+
+                h3{
+                    color: #6D7186;
+                    display: flex;
+                    font: normal 700 20px 'Proxima Nova';
+                    justify-content: space-between;
+                    letter-spacing: 0.6px;
+                    margin-bottom: 30px;
+                    margin-right: 10px;
+                    text-transform: uppercase;
+                    width: 120%;
+                    
+                    button{
+                        background-color: transparent;
+                        border: none;
+                        color: #6D7186;
+                        font: normal 700 20px 'Proxima Nova';
+                        letter-spacing: 1px;
+                        text-transform: uppercase;
+                        transition: 0.21s;
+
+                        &:hover{
+                            opacity: 0.6;
+                        }
+                    }
+                }
+
+                #images_list{
+                    background-color: #1E1F25;
+                    border-radius: 20px;
+                    font-size: 0px;
+                    list-style: none;
+                    margin: 0px auto;
+                    padding: 70px;
+                    width: 100% /* 612px 764px */;
+                    
+                    li{
+                        border-radius: 5px;
+                        color: #fff;
+                        display: inline-block;
+                        font-size: 80px;
+                        height: 143px;
+                        margin: 5px 5px;
+                        text-align: center;
+                        transition: 0.28s;
+                        vertical-align: top;
+                        width: 143px;
+
+                        &:hover{
+                            background-color: #A3A3FF;
+                        }
+                    }
+
+                    .disabled{
+                        -webkit-transform: scaleX(-1);
+                        pointer-events: none;
+                        transform: scaleX(-1);
+                    }
+
+                    .paired_value{
+                        pointer-events: none;
+                    }
+                    .front_card{
+                        background-color: #6666b8 !important;
+                        background-image: none !important;
+
+                        &:hover{
+                            background-color: #A3A3FF !important;
+                        }
+                    }
+
+                    li[data-value = "1"]{
+                        background-color: red;
+                        background-image:  url("../../img/0001.png");
+                        background-size: cover;
+                    }
+
+                    li[data-value = "2"]{
+                        background-color: orange;
+                        background-image:  url("../../img/0002.png");
+                        background-size: cover;
+                    }
+
+                    li[data-value = "3"]{
+                        background-color: yellow;
+                        background-image:  url("../../img/0003.png");
+                        background-size: cover;
+                    }
+
+                    li[data-value = "4"]{
+                        background-color: green;
+                        background-image:  url("../../img/0004.png");
+                        background-size: cover;
+                    }
+
+                    li[data-value = "5"]{
+                        background-color: blue;
+                        background-image:  url("../../img/0005.png");
+                        background-size: cover;
+                    }
+
+                    li[data-value = "6"]{
+                        background-color: indigo;
+                        background-image:  url("../../img/0006.png");
+                        background-size: cover;
+                    }
+
+                    li[data-value = "7"]{
+                        background-color: violet;
+                        background-image:  url("../../img/0007.png");
+                        background-size: cover;
+                    }
+
+                    li[data-value = "8"]{
+                        background-color: burlywood;
+                        background-image:  url("../../img/0008.png");
+                        background-size: cover;
+                    }
+                }
+            }
+        }
+    }
+}
