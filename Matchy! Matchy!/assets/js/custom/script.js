@@ -2,8 +2,8 @@ let matched_array = [];
 
 $(document).ready(function(){
     $("body")
-    .on("click", "button", loadTiles)           /* to generate li to #images_list */
-        .on("click", ".close_card", flip)       /* to flip card when click */
+    .on("click", "button", loadTiles)       /* to generate li to #images_list */
+    .on("click", ".close_card", flip)       /* to flip card when click */
 
         loadTiles();                            
         generatePairedCards();
@@ -28,23 +28,6 @@ function loadTiles(){
         let random_index        = Math.floor((Math.random() * get_paired_cards.length) + 0); 
         let get_array_element   = get_paired_cards.splice(random_index, 1); 
         let create_card         = $("<li>");
-
-        /*  */
-        // let pet_types = ["dog", "cat", "fish"];
-        // for(let pet_index = 0; pet_index < pet_types.length; pet_index++){
-        //     create_card.attr("class","pet_box_"+ pet_types[pet_index]);
-        //     // create_card.addClass("pet_box_"+ pet_types[pet_index]);
-        // }
-        /**
-         * class="pet_box_fish"
-         */
-        
-        // for(let pet_index = 0; pet_index < pet_types.length; pet_index++){
-        //     create_card.addClass("pet_box_"+ pet_types[pet_index]);
-        // }
-        /**
-         * class="pet_box_dog pet_box_cat pet_box_fish"
-         */
 
         create_card.attr("data-value", get_array_element);
         create_card.addClass("front_card");
@@ -79,3 +62,21 @@ function flip(){
         matched_array = [];
     }
 };
+
+
+ /*  */
+        // let pet_types = ["dog", "cat", "fish"];
+        // for(let pet_index = 0; pet_index < pet_types.length; pet_index++){
+        //     create_card.attr("class","pet_box_"+ pet_types[pet_index]);
+        //     // create_card.addClass("pet_box_"+ pet_types[pet_index]);
+        // }
+        /**
+         * class="pet_box_fish"
+         */
+        
+        // for(let pet_index = 0; pet_index < pet_types.length; pet_index++){
+        //     create_card.addClass("pet_box_"+ pet_types[pet_index]);
+        // }
+        /**
+         * class="pet_box_dog pet_box_cat pet_box_fish"
+         */

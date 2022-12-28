@@ -10,10 +10,10 @@
 }
 * body header .container {
   margin: 0px auto;
-  max-width: 612px;
+  max-width: 764px;
 }
 * body header .container h1 {
-  color: #A3A3FF;
+  color: #FF5A5A;
   display: inline-block;
   font: normal 800 22px 'Proxima Nova';
   letter-spacing: 1px;
@@ -23,7 +23,7 @@
 }
 * body section .container {
   margin: 0px auto;
-  max-width: 612px ;
+  max-width: 764px ;
 }
 * body section .container h3 {
   color: #6D7186;
@@ -34,7 +34,7 @@
   margin-bottom: 30px;
   margin-right: 10px;
   text-transform: uppercase;
-  width: 120%;
+  width: 100%;
 }
 * body section .container h3 button {
   background-color: transparent;
@@ -48,7 +48,7 @@
 * body section .container h3 button:hover {
   opacity: 0.6;
 }
-* body section .container #images_list {
+* body section .container #cards_container {
   background-color: #1E1F25;
   border-radius: 20px;
   font-size: 0px;
@@ -57,7 +57,9 @@
   padding: 70px;
   width: 100% /* 612px 764px */;
 }
-* body section .container #images_list li {
+* body section .container #cards_container tr td {
+  background-color: #FF5A5A;
+  background-size: cover;
   border-radius: 5px;
   color: #fff;
   display: inline-block;
@@ -69,61 +71,49 @@
   vertical-align: top;
   width: 143px;
 }
-* body section .container #images_list li:hover {
-  background-color: #A3A3FF;
+* body section .container #cards_container tr td:hover {
+  background-color: #ff8484;
 }
-* body section .container #images_list .disabled {
+* body section .container #cards_container tr td.front_card {
+  background-color: #FF5A5A !important;
+  background-image: none !important;
+}
+* body section .container #cards_container tr td.front_card:hover {
+  background-color: #ff6d6d !important;
+}
+* body section .container #cards_container tr td.card_1 {
+  background-image: url("../../img/0001.png");
+}
+* body section .container #cards_container tr td.card_2 {
+  background-image: url("../../img/0002.png");
+}
+* body section .container #cards_container tr td.card_3 {
+  background-image: url("../../img/0003.png");
+}
+* body section .container #cards_container tr td.card_4 {
+  background-image: url("../../img/0004.png");
+}
+* body section .container #cards_container tr td.card_5 {
+  background-image: url("../../img/0005.png");
+}
+* body section .container #cards_container tr td.card_6 {
+  background-image: url("../../img/0006.png");
+}
+* body section .container #cards_container tr td.card_7 {
+  background-image: url("../../img/0007.png");
+}
+* body section .container #cards_container tr td.card_8 {
+  background-image: url("../../img/0008.png");
+}
+* body section .container #cards_container .disabled {
   -webkit-transform: scaleX(-1);
   pointer-events: none;
   transform: scaleX(-1);
 }
-* body section .container #images_list .paired_value {
-  pointer-events: none;
-}
-* body section .container #images_list .front_card {
-  background-color: #6666b8 !important;
+* body section .container #cards_container .front_card {
+  background-color: #FF5A5A !important;
   background-image: none !important;
 }
-* body section .container #images_list .front_card:hover {
-  background-color: #A3A3FF !important;
-}
-* body section .container #images_list li[data-value="1"] {
-  background-color: red;
-  background-image: url("../../img/0001.png");
-  background-size: cover;
-}
-* body section .container #images_list li[data-value="2"] {
-  background-color: orange;
-  background-image: url("../../img/0002.png");
-  background-size: cover;
-}
-* body section .container #images_list li[data-value="3"] {
-  background-color: yellow;
-  background-image: url("../../img/0003.png");
-  background-size: cover;
-}
-* body section .container #images_list li[data-value="4"] {
-  background-color: green;
-  background-image: url("../../img/0004.png");
-  background-size: cover;
-}
-* body section .container #images_list li[data-value="5"] {
-  background-color: blue;
-  background-image: url("../../img/0005.png");
-  background-size: cover;
-}
-* body section .container #images_list li[data-value="6"] {
-  background-color: indigo;
-  background-image: url("../../img/0006.png");
-  background-size: cover;
-}
-* body section .container #images_list li[data-value="7"] {
-  background-color: violet;
-  background-image: url("../../img/0007.png");
-  background-size: cover;
-}
-* body section .container #images_list li[data-value="8"] {
-  background-color: burlywood;
-  background-image: url("../../img/0008.png");
-  background-size: cover;
+* body section .container #cards_container .front_card:hover {
+  background-color: #ff6d6d !important;
 }

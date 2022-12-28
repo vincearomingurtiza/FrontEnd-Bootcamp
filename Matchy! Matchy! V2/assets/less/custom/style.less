@@ -9,10 +9,10 @@
             margin-bottom: 50px;
             .container{
                 margin: 0px auto;
-                max-width: 612px;
+                max-width: 764px;
                 
                 h1{
-                    color: #A3A3FF;
+                    color: #FF5A5A;
                     display: inline-block;
                     font: normal 800 22px 'Proxima Nova';
                     letter-spacing: 1px;
@@ -26,7 +26,7 @@
         section{
             .container{
                 margin: 0px auto;
-                max-width: 612px ;;
+                max-width: 764px ;;
 
                 h3{
                     color: #6D7186;
@@ -37,7 +37,7 @@
                     margin-bottom: 30px;
                     margin-right: 10px;
                     text-transform: uppercase;
-                    width: 120%;
+                    width: 100%;
                     
                     button{
                         background-color: transparent;
@@ -54,7 +54,7 @@
                     }
                 }
 
-                #images_list{
+                #cards_container{
                     background-color: #1E1F25;
                     border-radius: 20px;
                     font-size: 0px;
@@ -62,22 +62,70 @@
                     margin: 0px auto;
                     padding: 70px;
                     width: 100% /* 612px 764px */;
-                    
-                    li{
-                        border-radius: 5px;
-                        color: #fff;
-                        display: inline-block;
-                        font-size: 80px;
-                        height: 143px;
-                        margin: 5px 5px;
-                        text-align: center;
-                        transition: 0.28s;
-                        vertical-align: top;
-                        width: 143px;
 
-                        &:hover{
-                            background-color: #A3A3FF;
+                    tr{
+                        td{
+                            background-color: #FF5A5A;
+                            background-size: cover;
+                            border-radius: 5px;
+                            color: #fff;
+                            display: inline-block;
+                            font-size: 80px;
+                            height: 143px;
+                            margin: 5px 5px;
+                            text-align: center;
+                            transition: 0.28s;
+                            vertical-align: top;
+                            width: 143px;
+    
+                            &:hover{
+                                background-color: #ff8484;
+                            }
+
+                            &.front_card{
+                                background-color: #FF5A5A !important;
+                                background-image: none !important;
+        
+                                &:hover{
+                                    background-color: #ff6d6d !important;
+                                }
+                            }
+
+                            &.card_1{
+                                background-image:  url("../../img/0001.png");
+                            }
+        
+                            &.card_2{
+                                background-image:  url("../../img/0002.png");
+                            }
+        
+                            &.card_3{
+                                background-image:  url("../../img/0003.png");
+                            }
+        
+                            &.card_4{
+                                background-image:  url("../../img/0004.png");
+                            }
+        
+                            &.card_5{
+                                background-image:  url("../../img/0005.png");
+                            }
+        
+                            &.card_6{
+                                background-image:  url("../../img/0006.png");
+                            }
+        
+                            &.card_7{
+                                background-image:  url("../../img/0007.png");
+                            }
+        
+                            &.card_8{
+                                background-image:  url("../../img/0008.png");
+                            }
                         }
+
+                        
+
                     }
 
                     .disabled{
@@ -86,64 +134,13 @@
                         transform: scaleX(-1);
                     }
 
-                    .paired_value{
-                        pointer-events: none;
-                    }
                     .front_card{
-                        background-color: #6666b8 !important;
+                        background-color: #FF5A5A !important;
                         background-image: none !important;
 
                         &:hover{
-                            background-color: #A3A3FF !important;
+                            background-color: #ff6d6d !important;
                         }
-                    }
-
-                    li[data-value = "1"]{
-                        background-color: red;
-                        background-image:  url("../../img/0001.png");
-                        background-size: cover;
-                    }
-
-                    li[data-value = "2"]{
-                        background-color: orange;
-                        background-image:  url("../../img/0002.png");
-                        background-size: cover;
-                    }
-
-                    li[data-value = "3"]{
-                        background-color: yellow;
-                        background-image:  url("../../img/0003.png");
-                        background-size: cover;
-                    }
-
-                    li[data-value = "4"]{
-                        background-color: green;
-                        background-image:  url("../../img/0004.png");
-                        background-size: cover;
-                    }
-
-                    li[data-value = "5"]{
-                        background-color: blue;
-                        background-image:  url("../../img/0005.png");
-                        background-size: cover;
-                    }
-
-                    li[data-value = "6"]{
-                        background-color: indigo;
-                        background-image:  url("../../img/0006.png");
-                        background-size: cover;
-                    }
-
-                    li[data-value = "7"]{
-                        background-color: violet;
-                        background-image:  url("../../img/0007.png");
-                        background-size: cover;
-                    }
-
-                    li[data-value = "8"]{
-                        background-color: burlywood;
-                        background-image:  url("../../img/0008.png");
-                        background-size: cover;
                     }
                 }
             }
