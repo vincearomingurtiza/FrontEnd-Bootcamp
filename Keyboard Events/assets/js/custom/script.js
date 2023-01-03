@@ -6,7 +6,7 @@ $(document).ready(function(){
 
 function move(){
 	$(document).keydown(function(event){
-        // console.log(event.which);
+        console.log(event.which);
         switch (event.which){
             case 37: {  /*left arrow */
                 $("#move_me").css({

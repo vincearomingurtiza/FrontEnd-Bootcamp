@@ -1,0 +1,93 @@
+*{
+    margin: 0px;
+
+    body{
+        background-color: #7878b6;
+        
+        header{
+            background-color: #1E1F25;
+            margin-bottom: 50px;
+            .container{
+                margin: 0px auto;
+                max-width: 800px;
+                
+                h1{
+                    color: #A3A3FF;
+                    display: inline-block;
+                    font: normal 800 22px 'Proxima Nova';
+                    letter-spacing: 1px;
+                    padding: 20px 0px;
+                    text-transform: uppercase;
+                    vertical-align: middle;
+                }
+            }
+        }
+
+        section{
+            #container{
+                border-radius: 10px;
+                height: 800px;
+                margin: 0px auto;
+                max-width: 800px;
+                position: relative;
+
+                #move_me{
+                    background: url('../../img/pokemon.png') no-repeat -15px -14px;
+                    height: 46px;
+                    left: 50%;
+                    position: absolute;
+                    top: 40%;
+                    width: 34px;
+
+                    &.move_left_foot_to_left{
+                        background: url('../../img/pokemon.png') no-repeat -15px -78px !important;
+                        height: 48px !important;
+                        width: 34px !important;
+                    }
+                    
+                    &.move_right_foot_to_left{
+                        background: url('../../img/pokemon.png') no-repeat -207px -76px !important;
+                        height: 46px !important;
+                        width: 34px !important;
+                    }
+
+                    &.move_left_foot_to_right{
+                        background: url('../../img/pokemon.png') no-repeat -17px -142px !important;
+                        height: 48px !important;
+                        width: 34px !important;
+                    }
+
+                    &.move_right_foot_to_right{
+                        background: url('../../img/pokemon.png') no-repeat -209px -140px !important;
+                        height: 46px !important;
+                        width: 34px !important;
+                    }
+
+                    &.move_left_foot_to_up{
+                        background: url('../../img/pokemon.png') no-repeat -15px -206px !important;
+                        height: 50px !important;
+                        width: 34px !important;
+                    }
+
+                    &.move_right_foot_to_up{
+                        background: url('../../img/pokemon.png') no-repeat -79px -204px !important;
+                        height: 50px !important;
+                        width: 34px !important;
+                    }
+
+                    &.move_left_foot_to_down{
+                        background: url('../../img/pokemon.png') no-repeat -15px -14px !important;
+                        height: 50px !important;
+                        width: 34px !important;
+                    }
+
+                    &.move_right_foot_to_down{
+                        background: url('../../img/pokemon.png') no-repeat -79px -12px !important;
+                        height: 50px !important;
+                        width: 34px !important;
+                    }
+                }
+            }
+        }
+    }
+}
