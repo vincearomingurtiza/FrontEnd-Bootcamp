@@ -1,7 +1,7 @@
 let matched_array_element = [];
 $(document).ready(function(){
     $("body")
-    .on("click", "header", loadCards)
+    .on("click", "button", loadCards)
     .on("click", ".close_card", flipCard)
 
     loadCards();
@@ -22,7 +22,6 @@ function loadCards(){
         $("#cards_container").append(create_row);
         
         for(let create_card_count =  0; create_card_count < 4; create_card_count++){
-            
             let random_index_count = Math.floor((Math.random() * select_paired_cards.length) + 0);
             let select_array_element =  select_paired_cards.splice(random_index_count, 1);
             let create_card = $("<td>", {class : "card_" + select_array_element});

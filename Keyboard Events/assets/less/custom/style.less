@@ -1,0 +1,74 @@
+*{
+    margin: 0px;
+
+    body{
+        background-color: #2C2D34;
+        
+        header{
+            background-color: #1E1F25;
+            margin-bottom: 50px;
+            .container{
+                margin: 0px auto;
+                max-width: 800px;
+                
+                h1{
+                    color: #A3A3FF;
+                    display: inline-block;
+                    font: normal 800 22px 'Proxima Nova';
+                    letter-spacing: 1px;
+                    padding: 20px 0px;
+                    text-transform: uppercase;
+                    vertical-align: middle;
+                }
+            }
+        }
+
+        section{
+            #container{
+                // background-color: #1E1F25;
+                border-radius: 10px;
+                height: 800px;
+                margin: 0px auto;
+                max-width: 800px;
+                position: relative;
+
+                #move_me{
+                    align-items: center;
+                    background-color: #32333b;
+                    border-radius: 10px;
+                    color: #1E1F25;
+                    display: flex;
+                    font: normal 700 40px 'Proxima Nova';
+                    height: 200px;
+                    justify-content: center;
+                    left: 0px;
+                    position: absolute;
+                    text-align: center;
+                    top: 0px;
+                    transition: 0.21s;
+                    width: 200px;
+                    
+                    &.color_1{
+                        background-color: red !important;
+                    }
+
+                    &.color_2{
+                        background-color: orange !important;
+                    }
+
+                    &.color_3{
+                        background-color: yellow !important;
+                    }
+
+                    &.color_4{
+                        background-color: green !important;
+                    }
+
+                    &.color_5{
+                        background-color: blue !important;
+                    }
+                }
+            }
+        }
+    }
+}
