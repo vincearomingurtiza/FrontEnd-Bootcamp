@@ -5,71 +5,70 @@ $(document).ready(function(){
 });
 
 function move(){
-    $(document).keyup(function(event){
-        let move_element = $("#move_me");
+    $(document).on("keyup", function(event){
+        let move_element = $("#pokemon_master");
+        move_element.removeClass();
+        let sprite_class = "";
         
         switch (event.which){
             case 37: case 65: {  /*Left & A */
                 move_element.css({left: "-=10px"});
-                move_element.removeClass();
-                move_element.addClass("move_left_foot_to_left");
+                sprite_class = "move_left_foot_to_left";
+                break;
+            }
+
+            case 38: case 87: {  /* Up & W */
+                move_element.css({top: "-=10px"});
+                sprite_class = ("move_left_foot_to_up");
                 break;
             }
 
             case 39 : case 68: {  /* Right & D*/
                 move_element.css({left: "+=10px"});
-                move_element.removeClass();
-                move_element.addClass("move_left_foot_to_right");
-                break;
-            }
-
-            case 38: case 87: {  /* Up & W */
-                move_element.css({top: "-=10px"});
-                move_element.removeClass();
-                move_element.addClass("move_left_foot_to_up");
+                sprite_class = ("move_left_foot_to_right");
                 break;
             }
 
             case 40: case 83: {  /* Down & S*/
                 move_element.css({top: "+=10px"});
-                move_element.removeClass();
-                move_element.addClass("move_left_foot_to_down");
+                sprite_class = ("move_left_foot_to_down");
                 break;
             }
         }
-    });
 
-	$(document).keydown(function(event){
-        let move_element = $("#move_me");
+        move_element.addClass(sprite_class);
+
+    }).on("keydown", function(event){
+        let move_element = $("#pokemon_master");
+        move_element.removeClass();
+        let sprite_class = "";
 
         switch (event.which){
             case 37: case 65: {  /*Left & A */
                 move_element.css({left: "-=10px"});
-                move_element.removeClass();
-                move_element.addClass("move_right_foot_to_left");
-                break;
-            }
-
-            case 39: case 68: {  /* Right & D */
-                move_element.css({left: "+=10px"});
-                move_element.removeClass();
-                move_element.addClass("move_right_foot_to_right");
+                sprite_class = ("move_right_foot_to_left");
                 break;
             }
 
             case 38: case 87: {  /* Up & W */
                 move_element.css({top: "-=10px"});
-                move_element.removeClass();
-                move_element.addClass("move_right_foot_to_up");
+                sprite_class = ("move_right_foot_to_up");
+                break;
+            }
+
+            case 39: case 68: {  /* Right & D */
+                move_element.css({left: "+=10px"});
+                sprite_class = ("move_right_foot_to_right");
                 break;
             }
 
             case 40: case 83: {  /* Down & S */
                 move_element.css({top: "+=10px"});
-                move_element.removeClass();
-                move_element.addClass("move_right_foot_to_down");
+                sprite_class = ("move_right_foot_to_down");
                 break;
             }
         }
+
+        move_element.addClass(sprite_class);
     });
 };
