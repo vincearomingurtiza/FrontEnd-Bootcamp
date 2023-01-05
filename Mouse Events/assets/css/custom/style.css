@@ -1,0 +1,72 @@
+* {
+  margin: 0px;
+}
+* body {
+  background-color: #7878b6;
+}
+* body header {
+  background-color: #1E1F25;
+  margin-bottom: 50px;
+}
+* body header .container {
+  margin: 0px auto;
+  max-width: 800px;
+}
+* body header .container h1 {
+  color: #A3A3FF;
+  display: inline-block;
+  font: normal 800 22px 'Proxima Nova';
+  letter-spacing: 1px;
+  padding: 20px 0px;
+  text-transform: uppercase;
+  vertical-align: middle;
+}
+* body section #container {
+  border-radius: 10px;
+  height: 800px;
+  margin: 0px auto;
+  max-width: 800px;
+}
+* body section #container #pokemon_master {
+  background: url('../../img/pokemon.png') no-repeat -15px -14px;
+  height: 48px;
+  left: 50%;
+  position: absolute;
+  top: 45%;
+  width: 34px;
+}
+* body section #container #pokemon_master.movement_transition {
+  transition: 0.5s;
+}
+* body section #container #pokemon_master.move_left_foot_to_left {
+  background-position: -15px -78px;
+  left: "-=10px";
+}
+* body section #container #pokemon_master.move_right_foot_to_left {
+  background-position: -207px -76px;
+  top: "-=10px";
+}
+* body section #container #pokemon_master.move_left_foot_to_right {
+  background-position: -17px -142px;
+  left: "+=10px";
+}
+* body section #container #pokemon_master.move_right_foot_to_right {
+  background-position: -209px -140px;
+  left: "+=10px";
+}
+* body section #container #pokemon_master.move_left_foot_to_up {
+  background-position: -15px -206px;
+  top: "-=10px";
+}
+* body section #container #pokemon_master.move_right_foot_to_up {
+  background-position: -79px -204px;
+  top: "-=10px";
+}
+* body section #container #pokemon_master.move_left_foot_to_down {
+  background-position: -15px -14px;
+  top: "+=10px";
+}
+* body section #container #pokemon_master.move_right_foot_to_down {
+  background-position: -79px -12px;
+  top: "+=10px";
+}

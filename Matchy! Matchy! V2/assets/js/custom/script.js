@@ -1,4 +1,4 @@
-let matched_array_element = [];
+let xny_array = [];
 $(document).ready(function(){
     $("body")
     .on("click", "button", loadCards)
@@ -40,12 +40,12 @@ function flipCard(){
     let selected_data_card_value_matched = $(this).attr("data-card-value");
     let close_cards_classes = $(".disabled.close_card");
     
-    if (matched_array_element.length < 2){
-        matched_array_element.push(selected_data_card_value_matched);
+    if (xny_array.length < 2){
+        xny_array.push(selected_data_card_value_matched);
     }
 
-    if( matched_array_element.length == 2){
-        if (matched_array_element[0] == matched_array_element[1]){
+    if( xny_array.length == 2){
+        if (xny_array[0] == xny_array[1]){
             close_cards_classes.removeClass("close_card");
         } else {
             setTimeout(function(){
@@ -53,7 +53,7 @@ function flipCard(){
                 close_cards_classes.removeClass("disabled");
             },500);
         }
-        matched_array_element = [];
+        xny_array = [];
     }
 
 };
