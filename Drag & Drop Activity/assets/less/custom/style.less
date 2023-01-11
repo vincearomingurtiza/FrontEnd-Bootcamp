@@ -13,7 +13,7 @@
                 max-width: 800px;
                 
                 h1{
-                    color: #A3A3FF;
+                    color: #73D395;
                     display: inline-block;
                     font: normal 800 22px 'Proxima Nova';
                     letter-spacing: 1px;
@@ -60,25 +60,24 @@
                         .box_style{
                             display: inline-block;
                             vertical-align: top;
-                            background-color: #fff;
+                            background-color: #73D395;
                             height: 50px;
                             width: 50px;
                             border-radius: 4px;
+
+                            &:hover{
+                                opacity: 0.6;
+                            }
                         }
 
                         .box_0, .box_1, .box_2, .box_3, .box_4, .box_5, .box_6, .box_7, .box_8, .box_9{
                             position: absolute;
+                            cursor: move;
+                            user-select: none;
                         }
 
                         .collide{
-                            display: inline-block;
-                            vertical-align: top;
-                            background-color: #3F84F7;
-                            height: 50px;
-                            width: 50px;
-                            border-radius: 4px;
-                            font-size: 20px;
-                            text-align: center;
+                            background-color: #3F84F7 !important;
                         }
                     }
 

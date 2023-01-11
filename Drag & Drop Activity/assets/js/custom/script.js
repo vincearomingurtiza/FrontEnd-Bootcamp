@@ -1,59 +1,54 @@
+let recursion_count = 0;
 $(document).ready(function(){
     $("body")
-        .on("click","#safe_zone", test)
-    test()
+        .on("click", ".box_style", moveBoxElement)
+        duplicateBoxElement()
 });
 
-function test(){
-    let war_zone_element = document.getElementById("dark_zone");;
+function duplicateBoxElement(){
+    let dark_zone_element = document.getElementById("dark_zone");
+    let random_number_for_x = Math.floor(Math.random() * 718);
+    let random_number_for_y = Math.floor(Math.random() * 649);
+    let create_box = document.createElement("span");
+
+    create_box.classList.add("box_" + recursion_count, "box_style");
+    dark_zone_element.appendChild(create_box);
     
-    for(let counter = 0; counter < 10; counter++){
-        let random_number_for_x = Math.floor(Math.random() * 718);
-        let random_number_for_y = Math.floor(Math.random() * 649);
-        let create_box = document.createElement("span");
-        
-        create_box.classList.add("box_" + counter, "box_style");
-        
-        let get_box_element = document.getElementsByClassName("box_" + counter);
-        // let get_pixels = random_number_for_x+"px";
-        // let get_this = $(".box_"+counter+"");
-        $(".box_1").css("left", random_number_for_x + "px");
-        $(".box_1").css("top", random_number_for_y + "px");
-        // get_box_element.style.left = ""+get_pixels+"";
+    $(".box_" + recursion_count).css("left", random_number_for_x + "px");
+    $(".box_" + recursion_count).css("top" , random_number_for_y + "px");
+    
+    recursion_count++;
+    
+    setTimeout(function(){
+        if(recursion_count < 5){
+            duplicateBoxElement();
+        }
+    }, 0);
+}
 
-        // get_box_element.style.left = random_number_for_x + "px";
-        // get_box_element.style.top  = random_number_for_y + "px";
-        war_zone_element.appendChild(create_box);
-        // get_box_element.css("top", ""+random_number_for_y+"px");
-        // get_box_element.style.top   = random_number_for_y + "px";
-        // console.log(get_this);
-        
-        console.log("x: " + random_number_for_x);
-        console.log("y: " + random_number_for_y);
+function moveBoxElement(){
+    let get_click_element = this;
+
+    let mouseDown = function(){
+        this.addEventListener("mousemove", mouseMove);
+        this.addEventListener("mouseup", mouseUp)
     }
 
-    for(let counter = 0; counter < 10; counter++){
-        let random_number_for_x = Math.floor(Math.random() * 718);
-        let random_number_for_y = Math.floor(Math.random() * 649);
-        let create_box = document.createElement("span");
+    let mouseMove = function(event){    
+        let client_X = event.clientX;
+        let client_Y = event.clientY;
         
-        create_box.classList.add("box_" + counter, "box_style");
-        
-        let get_box_element = document.getElementsByClassName("box_" + counter);
-        // let get_pixels = random_number_for_x+"px";
-        // let get_this = $(".box_"+counter+"");
-        $(".box_0").css("left", random_number_for_x + "px");
-        $(".box_0").css("top", random_number_for_y + "px");
-        // get_box_element.style.left = ""+get_pixels+"";
+        let drag_position_left = client_X - 195.5;
+        let drag_position_top  = client_Y - 137;
 
-        // get_box_element.style.left = random_number_for_x + "px";
-        // get_box_element.style.top  = random_number_for_y + "px";
-        war_zone_element.appendChild(create_box);
-        // get_box_element.css("top", ""+random_number_for_y+"px");
-        // get_box_element.style.top   = random_number_for_y + "px";
-        // console.log(get_this);
-        
-        console.log("x: " + random_number_for_x);
-        console.log("y: " + random_number_for_y);
+        get_click_element.style.left = drag_position_left + "px";
+        get_click_element.style.top  = drag_position_top  + "px";
     }
-};
+
+    let mouseUp = function(){
+        this.removeEventListener("mousemove", mouseMove);
+        this.removeEventListener("mouseup", mouseUp);
+    }
+    
+    this.addEventListener("mousedown", mouseDown);
+}
