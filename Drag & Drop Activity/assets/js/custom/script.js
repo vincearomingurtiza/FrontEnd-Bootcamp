@@ -53,7 +53,7 @@ function moveBoxElement(){
         let drag_position_top  = client_Y - 137;
         
         let this_this = event.target;
-        console.log(event.target);
+        // console.log(event.target);
         
         get_click_element.style.left = drag_position_left + "px";
         get_click_element.style.top  = drag_position_top  + "px";
@@ -85,7 +85,7 @@ function moveBoxElement(){
             active_click.top    <= get_box_2_coordinates.bottom &&
             active_click.right  >= get_box_2_coordinates.left   &&
             active_click.left   <= get_box_2_coordinates.right){
-                
+
             active_click.classList.add("collide");
             get_box_2.classList.add("collide");
         } else if (
