@@ -73,10 +73,15 @@
 * body section .container ul #dark_zone .box_8,
 * body section .container ul #dark_zone .box_9 {
   position: absolute;
-  cursor: move;
   user-select: none;
 }
+* body section .container ul #dark_zone .move_cursor {
+  cursor: move;
+}
 * body section .container ul #dark_zone .collide {
+  background-color: #BE3B16 !important;
+}
+* body section .container ul #dark_zone .safe_box {
   background-color: #3F84F7 !important;
 }
 * body section .container ul #safe_zone {
