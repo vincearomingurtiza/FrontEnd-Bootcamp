@@ -84,6 +84,9 @@
 * body section .container ul #dark_zone .safe_box {
   background-color: #3F84F7 !important;
 }
+* body section .container ul #dark_zone .disable {
+  pointer-events: none;
+}
 * body section .container ul #safe_zone {
   width: 21%;
   background-color: #fff;
