@@ -1,12 +1,13 @@
 let recursion_count = 0;
-$(document).ready(function(){
-    $("body")
-        .on("mousedown", ".box_style", moveBoxElement)
-});
-
 document.addEventListener("DOMContentLoaded", function(){
     duplicateBoxElement();
-    moveBoxElement()
+    let body_element = document.querySelector("body");
+    
+    body_element.addEventListener("mousedown", function(event){
+        if(event.target.classList.contains("box_style")){
+            moveBoxElement(event.target);
+        }
+    });
 });
 
 function duplicateBoxElement(){
@@ -28,142 +29,72 @@ function duplicateBoxElement(){
             duplicateBoxElement();
         }
     }, 0);
-    checking();
 }
 
-function moveBoxElement(event){
-    let get_click_element = event.target;
+function moveBoxElement(target){
+    let get_this_box      = target;
     let dark_zone_element = document.getElementById("dark_zone");
     let get_safe_zone     = document.querySelector("#safe_zone");
-    let get_box_style     = document.querySelector(".box_style");
-    let get_box_0         = document.querySelector(".box_0");
-    let get_box_1         = document.querySelector(".box_1");
-    let get_box_2         = document.querySelector(".box_2");
-    let get_box_3         = document.querySelector(".box_3");
-    let get_box_4         = document.querySelector(".box_4");
-    /* MOUSEDOWN */
-    let mouseDown = function(){
-        dark_zone_element.addEventListener("mousemove", mouseMove);
-        dark_zone_element.addEventListener("mouseup", mouseUp);
-        get_click_element.classList.add("move_cursor");
-    }
+    let get_box_style     = document.querySelectorAll(".box_style");
+    // console.log(get_box_style);
+    
     /* MOUSEMOVE */
     let mouseMove = function(event){
         let client_X = event.clientX - 195.5;
         let client_Y = event.clientY - 137;
         
-        get_click_element.style.left = client_X + "px";
-        get_click_element.style.top  = client_Y + "px";
+        get_this_box.style.left = client_X + "px";
+        get_this_box.style.top  = client_Y + "px";
 
-        let get_safe_zone_coordinates = get_safe_zone.getBoundingClientRect();
-        let get_box_style_coordinates = get_box_style.getBoundingClientRect();
-        let active_click              = get_click_element.getBoundingClientRect();
-        
-        let get_box_0_coordinates     = get_box_0.getBoundingClientRect();
-        let get_box_1_coordinates     = get_box_1.getBoundingClientRect();
-        let get_box_2_coordinates     = get_box_2.getBoundingClientRect();
-        let get_box_3_coordinates     = get_box_3.getBoundingClientRect();
-        let get_box_4_coordinates     = get_box_4.getBoundingClientRect();
+        get_box_style.forEach(function(box){
+            let get_this_box_coordinates  = get_this_box.getBoundingClientRect();
+            let box_coordinates           = box.getBoundingClientRect();
+            let get_safe_zone_coordinates = get_safe_zone.getBoundingClientRect();
+            // if(get_this_box != box){
+            // }
+            if (get_this_box_coordinates.left >= get_safe_zone_coordinates.left){
+                get_this_box.classList.add("safe_box");
+            } else {
+                get_this_box.classList.remove("safe_box");
+            }
 
-        if (get_box_style_coordinates.left >= get_safe_zone_coordinates.left){
-            get_box_0.classList.add("safe_box");
-        } else {
-            get_box_0.classList.remove("safe_box");
-            get_box_0.classList.remove("collide");
-            get_box_1.classList.remove("collide");
-            get_box_2.classList.remove("collide");
-            get_box_3.classList.remove("collide");
-            get_box_4.classList.remove("collide");
-        }
+            if (get_this_box_coordinates.bottom >= box_coordinates.top    &&
+                get_this_box_coordinates.top    <= box_coordinates.bottom &&
+                get_this_box_coordinates.right  >= box_coordinates.left   &&
+                get_this_box_coordinates.left   <= box_coordinates.right){
 
-        if (active_click.bottom >= get_box_0_coordinates.top    &&
-            active_click.top    <= get_box_0_coordinates.bottom &&
-            active_click.right  >= get_box_0_coordinates.left   &&
-            active_click.left   <= get_box_0_coordinates.right){
-                get_box_0.classList.add("collide");
-                // active_click.classList.add("collide");
-        } else if (
-            active_click.bottom >= get_box_1_coordinates.top    &&
-            active_click.top    <= get_box_1_coordinates.bottom &&
-            active_click.right  >= get_box_1_coordinates.left   &&
-            active_click.left   <= get_box_1_coordinates.right){
-                get_box_1.classList.add("collide");
-                // active_click.classList.add("collide");
-        } else if (
-            active_click.bottom >= get_box_2_coordinates.top    &&
-            active_click.top    <= get_box_2_coordinates.bottom &&
-            active_click.right  >= get_box_2_coordinates.left   &&
-            active_click.left   <= get_box_2_coordinates.right){
-                get_box_2.classList.add("collide");
-                // active_click.classList.add("collide");
-        } else if (
-            active_click.bottom >= get_box_3_coordinates.top    &&
-            active_click.top    <= get_box_3_coordinates.bottom &&
-            active_click.right  >= get_box_3_coordinates.left   &&
-            active_click.left   <= get_box_3_coordinates.right){
-                get_box_3.classList.add("collide");
-                // active_click.classList.add("collide");
-        } else if (
-            active_click.bottom >= get_box_4_coordinates.top    &&
-            active_click.top    <= get_box_4_coordinates.bottom &&
-            active_click.right  >= get_box_4_coordinates.left   &&
-            active_click.left   <= get_box_4_coordinates.right){
-                get_box_4.classList.add("collide");
-                // active_click.classList.add("collide");
-        } else {
-            get_click_element.classList.remove("collide");
-            get_box_0.classList.remove("collide");
-            get_box_1.classList.remove("collide");
-            get_box_2.classList.remove("collide");
-            get_box_3.classList.remove("collide");
-            get_box_4.classList.remove("collide");
-        }
+                    get_this_box.classList.add("collide");
+                    box.classList.add("collide");
+
+                    console.log("-------------------------------------------------");
+                    console.log(get_this_box);
+                    console.log(box);
+                    console.log("-------------------------------------------------");
+                    console.log(get_this_box.classList);
+                    console.log(box.classList);
+
+            } else {
+                // get_this_box.classList.remove("collide");
+                // box.classList.remove("collide");
+            }
+            
+        })
     }
     /* MOUSEUP */
     let mouseUp = function(){
         this.removeEventListener("mousemove", mouseMove);
         this.removeEventListener("mouseup", mouseUp);
-        get_click_element.classList.remove("move_cursor");
+        get_this_box.classList.remove("move_cursor");
 
         let get_safe_zone_coordinates = get_safe_zone.getBoundingClientRect();
-        let get_box_style_coordinates = get_box_style.getBoundingClientRect();
+        let get_this_coordinates = get_this_box.getBoundingClientRect();
 
-        if (get_box_style_coordinates.left >= get_safe_zone_coordinates.left){
-            get_box_0.classList.add("disable");
+        if (get_this_coordinates.left >= get_safe_zone_coordinates.left){
+            get_this_box.classList.add("disable");
         }
     }
     
-    get_box_style.addEventListener("mousedown", mouseDown);
+    dark_zone_element.addEventListener("mouseup", mouseUp);
+    dark_zone_element.addEventListener("mousemove", mouseMove);
+    get_this_box.classList.add("move_cursor");
 }
-
-function checking(){
-    let get_box_style_element = document.querySelector(".box_style");
-    let get_box_style_element_coordinates = get_box_style_element.getBoundingClientRect();
-
-     if(
-        get_box_style_element_coordinates.bottom >= get_box_style_element_coordinates.top    &&
-        get_box_style_element_coordinates.top    <= get_box_style_element_coordinates.bottom &&
-        get_box_style_element_coordinates.right  >= get_box_style_element_coordinates.left   &&
-        get_box_style_element_coordinates.left   <= get_box_style_element_coordinates.right){
-
-            get_box_style_element.classList.add("collide");
-            get_box_style_element.classList.add("collide");
-    } else {
-        get_box_0.classList.remove("collide");
-        get_box_1.classList.remove("collide");
-        get_box_2.classList.remove("collide");
-        get_box_3.classList.remove("collide");
-        get_box_4.classList.remove("collide");
-    }
-}
-
-
-
-
-
-// let get_this_element = document.querySelector(".box_style");
-// get_this_element.addEventListener("mousedown", mouseDown);
-
-// function mouseDown(event){
-//     console.log(event.target);
-// }
