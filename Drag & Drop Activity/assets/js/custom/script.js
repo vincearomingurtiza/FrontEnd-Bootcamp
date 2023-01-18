@@ -1,13 +1,6 @@
 let recursion_count = 0;
 document.addEventListener("DOMContentLoaded", function(){
     duplicateBoxElement();
-    let body_element = document.querySelector("body");
-    
-    body_element.addEventListener("mousedown", function(event){
-        if(event.target.classList.contains("box_style")){
-            moveBoxElement(event.target);
-        }
-    });
 });
 
 function duplicateBoxElement(){
@@ -18,6 +11,15 @@ function duplicateBoxElement(){
     
     create_box.classList.add("box_" + recursion_count, "box_style");
     dark_zone_element.appendChild(create_box);
+
+    create_box.addEventListener("mousedown", function(event){
+        event.target.classList.add("drag_start");
+        event.target.classList.add("move_cursor");
+        console.log("down");
+    });
+
+    create_box.addEventListener("mousemove", onMouseMove);
+    create_box.addEventListener("mouseup", onMouseUp);
     
     document.querySelector(".box_" + recursion_count).style.left = random_number_for_x + "px";
     document.querySelector(".box_" + recursion_count).style.top  = random_number_for_y + "px";
@@ -31,70 +33,55 @@ function duplicateBoxElement(){
     }, 0);
 }
 
-function moveBoxElement(target){
-    let get_this_box      = target;
-    let dark_zone_element = document.getElementById("dark_zone");
-    let get_safe_zone     = document.querySelector("#safe_zone");
-    let get_box_style     = document.querySelectorAll(".box_style");
-    // console.log(get_box_style);
-    
-    /* MOUSEMOVE */
-    let mouseMove = function(event){
+function onMouseUp(event){
+    console.log("up");
+    event.target.classList.remove("drag_start");
+    event.target.classList.remove("move_cursor");
+
+    let get_safe_zone_coordinates = get_safe_zone.getBoundingClientRect();
+    let get_this_coordinates = dragging_box.getBoundingClientRect();
+
+    if (get_this_coordinates.left >= get_safe_zone_coordinates.left){
+        dragging_box.classList.add("disable");
+    }
+}
+function onMouseMove(event){
+    if (event.target.classList.contains("drag_start")){
+        let dragging_box = event.target;
+        let dragging_box_coordinates  = dragging_box.getBoundingClientRect();
+        // let get_safe_zone_coordinates = get_safe_zone.getBoundingClientRect();
+        let other_boxes     = document.querySelectorAll(".box_style:not(.move_cursor)");
+
+        console.log("move");
         let client_X = event.clientX - 195.5;
-        let client_Y = event.clientY - 137;
+        let client_Y = event.clientY - 130;
         
-        get_this_box.style.left = client_X + "px";
-        get_this_box.style.top  = client_Y + "px";
+        dragging_box.style.left = client_X + "px";
+        dragging_box.style.top  = client_Y + "px";
 
-        get_box_style.forEach(function(box){
-            let get_this_box_coordinates  = get_this_box.getBoundingClientRect();
-            let box_coordinates           = box.getBoundingClientRect();
-            let get_safe_zone_coordinates = get_safe_zone.getBoundingClientRect();
-            // if(get_this_box != box){
-            // }
-            if (get_this_box_coordinates.left >= get_safe_zone_coordinates.left){
-                get_this_box.classList.add("safe_box");
-            } else {
-                get_this_box.classList.remove("safe_box");
-            }
-
-            if (get_this_box_coordinates.bottom >= box_coordinates.top    &&
-                get_this_box_coordinates.top    <= box_coordinates.bottom &&
-                get_this_box_coordinates.right  >= box_coordinates.left   &&
-                get_this_box_coordinates.left   <= box_coordinates.right){
-
-                    get_this_box.classList.add("collide");
-                    box.classList.add("collide");
-
-                    console.log("-------------------------------------------------");
-                    console.log(get_this_box);
-                    console.log(box);
-                    console.log("-------------------------------------------------");
-                    console.log(get_this_box.classList);
-                    console.log(box.classList);
-
-            } else {
-                // get_this_box.classList.remove("collide");
-                // box.classList.remove("collide");
-            }
-            
-        })
-    }
-    /* MOUSEUP */
-    let mouseUp = function(){
-        this.removeEventListener("mousemove", mouseMove);
-        this.removeEventListener("mouseup", mouseUp);
-        get_this_box.classList.remove("move_cursor");
-
-        let get_safe_zone_coordinates = get_safe_zone.getBoundingClientRect();
-        let get_this_coordinates = get_this_box.getBoundingClientRect();
-
-        if (get_this_coordinates.left >= get_safe_zone_coordinates.left){
-            get_this_box.classList.add("disable");
-        }
-    }
+        other_boxes.forEach(function(current_box){
+            let current_box_coordinates   = current_box.getBoundingClientRect();
+            if(dragging_box != current_box){
+                /* Safe Box Check */
+                // if (get_this_box_coordinates.left >= get_safe_zone_coordinates.left){
+                //     dragging_box.classList.add("safe_box");
+                // } else {
+                //     dragging_box.classList.remove("safe_box");
+                // }
+                
+                /* Collision Check */
+                if (dragging_box_coordinates.bottom >= current_box_coordinates.top    &&
+                    dragging_box_coordinates.top    <= current_box_coordinates.bottom &&
+                    dragging_box_coordinates.right  >= current_box_coordinates.left   &&
+                    dragging_box_coordinates.left   <= current_box_coordinates.right){
     
-    dark_zone_element.addEventListener("mouseup", mouseUp);
-    dark_zone_element.addEventListener("mousemove", mouseMove);
-    get_this_box.classList.add("move_cursor");
+                        dragging_box.classList.add("collide");
+                        current_box.classList.add("collide");
+                } else {
+                    dragging_box.classList.remove("collide");
+                    current_box.classList.remove("collide");
+                }
+            }
+        });
+    }
 }

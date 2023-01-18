@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Drag & Drop Activity</title>
     <link rel="stylesheet" href="./assets/css/custom/style.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script> -->
     <script src="./assets/js/custom/script.js"></script>
 </head>
 <body>
@@ -20,6 +20,11 @@
             <ul>
                 <li id="dark_zone">
                     <!-- span elements for box here -->
+                    <!-- <div class="box_0  box_style"></div>
+                    <div class="box_1  box_style"></div>
+                    <div class="box_2  box_style"></div>
+                    <div class="box_3  box_style"></div>
+                    <div class="box_4  box_style"></div> -->
                 </li>
                 <li id="safe_zone">
                     <h2>SAFE ZONE</h2>
@@ -29,3 +34,180 @@
     </section>
 </body>
 </html>
+
+<!-- if (box_0_coordinates.bottom >= box_1_coordinates.top    &&
+box_0_coordinates.top    <= box_1_coordinates.bottom &&
+box_0_coordinates.right  >= box_1_coordinates.left   &&
+box_0_coordinates.left   <= box_1_coordinates.right){
+
+    get_box_0.classList.add("collide");
+    get_box_1.classList.add("collide");
+} else if (
+box_0_coordinates.bottom >= box_2_coordinates.top    &&
+box_0_coordinates.top    <= box_2_coordinates.bottom &&
+box_0_coordinates.right  >= box_2_coordinates.left   &&
+box_0_coordinates.left   <= box_2_coordinates.right){
+
+    get_box_0.classList.add("collide");
+    get_box_2.classList.add("collide");
+} else if (
+box_0_coordinates.bottom >= box_3_coordinates.top    &&
+box_0_coordinates.top    <= box_3_coordinates.bottom &&
+box_0_coordinates.right  >= box_3_coordinates.left   &&
+box_0_coordinates.left   <= box_3_coordinates.right){
+
+    get_box_0.classList.add("collide");
+    get_box_3.classList.add("collide");
+} else if (
+box_0_coordinates.bottom >= box_4_coordinates.top    &&
+box_0_coordinates.top    <= box_4_coordinates.bottom &&
+box_0_coordinates.right  >= box_4_coordinates.left   &&
+box_0_coordinates.left   <= box_4_coordinates.right){
+
+    get_box_0.classList.add("collide");
+    get_box_4.classList.add("collide");
+}
+// // -----------------------------------------------------------------
+else if (
+box_1_coordinates.bottom >= box_0_coordinates.top    &&
+box_1_coordinates.top    <= box_0_coordinates.bottom &&
+box_1_coordinates.right  >= box_0_coordinates.left   &&
+box_1_coordinates.left   <= box_0_coordinates.right){
+
+    get_box_1.classList.add("collide");
+    get_box_0.classList.add("collide");
+} else if (
+box_1_coordinates.bottom >= box_2_coordinates.top    &&
+box_1_coordinates.top    <= box_2_coordinates.bottom &&
+box_1_coordinates.right  >= box_2_coordinates.left   &&
+box_1_coordinates.left   <= box_2_coordinates.right){
+
+    get_box_1.classList.add("collide");
+    get_box_2.classList.add("collide");
+} else if (
+box_1_coordinates.bottom >= box_3_coordinates.top    &&
+box_1_coordinates.top    <= box_3_coordinates.bottom &&
+box_1_coordinates.right  >= box_3_coordinates.left   &&
+box_1_coordinates.left   <= box_3_coordinates.right){
+
+    get_box_1.classList.add("collide");
+    get_box_3.classList.add("collide");
+} else if (
+box_1_coordinates.bottom >= box_4_coordinates.top    &&
+box_1_coordinates.top    <= box_4_coordinates.bottom &&
+box_1_coordinates.right  >= box_4_coordinates.left   &&
+box_1_coordinates.left   <= box_4_coordinates.right){
+
+    get_box_1.classList.add("collide");
+    get_box_4.classList.add("collide");
+}
+// -----------------------------------------------------------------
+else if (
+box_2_coordinates.bottom >= box_0_coordinates.top    &&
+box_2_coordinates.top    <= box_0_coordinates.bottom &&
+box_2_coordinates.right  >= box_0_coordinates.left   &&
+box_2_coordinates.left   <= box_0_coordinates.right){
+
+    get_box_2.classList.add("collide");
+    get_box_0.classList.add("collide");
+} else if (
+box_2_coordinates.bottom >= box_1_coordinates.top    &&
+box_2_coordinates.top    <= box_1_coordinates.bottom &&
+box_2_coordinates.right  >= box_1_coordinates.left   &&
+box_2_coordinates.left   <= box_1_coordinates.right){
+
+    get_box_2.classList.add("collide");
+    get_box_1.classList.add("collide");
+} else if (
+box_2_coordinates.bottom >= box_3_coordinates.top    &&
+box_2_coordinates.top    <= box_3_coordinates.bottom &&
+box_2_coordinates.right  >= box_3_coordinates.left   &&
+box_2_coordinates.left   <= box_3_coordinates.right){
+
+    get_box_2.classList.add("collide");
+    get_box_3.classList.add("collide");
+} else if (
+box_2_coordinates.bottom >= box_4_coordinates.top    &&
+box_2_coordinates.top    <= box_4_coordinates.bottom &&
+box_2_coordinates.right  >= box_4_coordinates.left   &&
+box_2_coordinates.left   <= box_4_coordinates.right){
+
+    get_box_2.classList.add("collide");
+    get_box_4.classList.add("collide");
+}
+// -----------------------------------------------------------------
+else if (
+box_3_coordinates.bottom >= box_0_coordinates.top    &&
+box_3_coordinates.top    <= box_0_coordinates.bottom &&
+box_3_coordinates.right  >= box_0_coordinates.left   &&
+box_3_coordinates.left   <= box_0_coordinates.right){
+
+    get_box_3.classList.add("collide");
+    get_box_0.classList.add("collide");
+} else if (
+box_3_coordinates.bottom >= box_1_coordinates.top    &&
+box_3_coordinates.top    <= box_1_coordinates.bottom &&
+box_3_coordinates.right  >= box_1_coordinates.left   &&
+box_3_coordinates.left   <= box_1_coordinates.right){
+
+    get_box_3.classList.add("collide");
+    get_box_1.classList.add("collide");
+} else if (
+box_3_coordinates.bottom >= box_2_coordinates.top    &&
+box_3_coordinates.top    <= box_2_coordinates.bottom &&
+box_3_coordinates.right  >= box_2_coordinates.left   &&
+box_3_coordinates.left   <= box_2_coordinates.right){
+
+    get_box_3.classList.add("collide");
+    get_box_3.classList.add("collide");
+} else if (
+box_3_coordinates.bottom >= box_4_coordinates.top    &&
+box_3_coordinates.top    <= box_4_coordinates.bottom &&
+box_3_coordinates.right  >= box_4_coordinates.left   &&
+box_3_coordinates.left   <= box_4_coordinates.right){
+
+    get_box_3.classList.add("collide");
+    get_box_4.classList.add("collide");
+}
+// -----------------------------------------------------------------
+else if (
+box_4_coordinates.bottom >= box_0_coordinates.top    &&
+box_4_coordinates.top    <= box_0_coordinates.bottom &&
+box_4_coordinates.right  >= box_0_coordinates.left   &&
+box_4_coordinates.left   <= box_0_coordinates.right){
+
+    get_box_4.classList.add("collide");
+    get_box_0.classList.add("collide");
+} else if (
+box_4_coordinates.bottom >= box_1_coordinates.top    &&
+box_4_coordinates.top    <= box_1_coordinates.bottom &&
+box_4_coordinates.right  >= box_1_coordinates.left   &&
+box_4_coordinates.left   <= box_1_coordinates.right){
+
+    get_box_4.classList.add("collide");
+    get_box_1.classList.add("collide");
+} else if (
+box_4_coordinates.bottom >= box_2_coordinates.top    &&
+box_4_coordinates.top    <= box_2_coordinates.bottom &&
+box_4_coordinates.right  >= box_2_coordinates.left   &&
+box_4_coordinates.left   <= box_2_coordinates.right){
+
+    get_box_4.classList.add("collide");
+    get_box_2.classList.add("collide");
+} else if (
+box_4_coordinates.bottom >= box_3_coordinates.top    &&
+box_4_coordinates.top    <= box_3_coordinates.bottom &&
+box_4_coordinates.right  >= box_3_coordinates.left   &&
+box_4_coordinates.left   <= box_3_coordinates.right){
+
+    get_box_4.classList.add("collide");
+    get_box_3.classList.add("collide");
+}
+
+else {
+get_box_0.classList.remove("collide");
+get_box_1.classList.remove("collide");
+get_box_2.classList.remove("collide");
+get_box_3.classList.remove("collide");
+get_box_4.classList.remove("collide");
+} -->
