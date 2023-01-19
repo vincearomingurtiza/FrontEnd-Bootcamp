@@ -1,21 +1,25 @@
 let recursion_count = 0;
+const LEFT_MAX_COORDINATES = 718;
+const TOP_MAX_COORDINATES = 649;
+
 document.addEventListener("DOMContentLoaded", function(){
     duplicateBoxElement();
 });
 
 function duplicateBoxElement(){
     let dark_zone_element   = document.getElementById("dark_zone");
-    let random_number_for_x = Math.floor(Math.random() * 718);
-    let random_number_for_y = Math.floor(Math.random() * 649);
+    let random_number_for_x = Math.floor(Math.random() * LEFT_MAX_COORDINATES);
+    let random_number_for_y = Math.floor(Math.random() * TOP_MAX_COORDINATES);
     let create_box = document.createElement("div");
     
     create_box.classList.add("box_" + recursion_count, "box_style");
     dark_zone_element.appendChild(create_box);
 
     create_box.addEventListener("mousedown", function(event){
-        event.target.classList.add("drag_start");
-        event.target.classList.add("move_cursor");
-        console.log("down");
+        if (event.target.classList.contains("disable") == false){
+            event.target.classList.add("drag_start");
+            console.log("down");
+        }
     });
 
     create_box.addEventListener("mousemove", onMouseMove);
@@ -34,54 +38,73 @@ function duplicateBoxElement(){
 }
 
 function onMouseUp(event){
-    console.log("up");
     event.target.classList.remove("drag_start");
-    event.target.classList.remove("move_cursor");
 
+    let get_safe_zone = document.querySelector("#safe_zone");
     let get_safe_zone_coordinates = get_safe_zone.getBoundingClientRect();
-    let get_this_coordinates = dragging_box.getBoundingClientRect();
+    let get_this_coordinates = event.target.getBoundingClientRect();
 
     if (get_this_coordinates.left >= get_safe_zone_coordinates.left){
-        dragging_box.classList.add("disable");
+        event.target.classList.add("disable");
     }
 }
+
+function isColliding (box_a, box_b){
+
+    let box_a_left = parseInt(box_a.x);
+    let box_a_top = parseInt(box_a.y);
+    let box_a_width = parseInt(box_a.width);
+    let box_a_height = parseInt(box_a.height);
+
+    let box_b_left = parseInt(box_b.x);
+    let box_b_top = parseInt(box_b.y);
+    let box_b_width = parseInt(box_b.width);
+    let box_b_height = parseInt(box_b.height);
+
+    return (box_a_left < box_b_left + box_b_width &&
+    box_a_left + box_a_width > box_b_left &&
+    box_a_top  < box_b_top + box_b_height &&
+    box_a_top + box_a_height > box_b_top);
+}
+
 function onMouseMove(event){
+    let dark_zone = document.querySelector("#dark_zone").getBoundingClientRect();
+
     if (event.target.classList.contains("drag_start")){
         let dragging_box = event.target;
         let dragging_box_coordinates  = dragging_box.getBoundingClientRect();
-        // let get_safe_zone_coordinates = get_safe_zone.getBoundingClientRect();
-        let other_boxes     = document.querySelectorAll(".box_style:not(.move_cursor)");
 
-        console.log("move");
-        let client_X = event.clientX - 195.5;
-        let client_Y = event.clientY - 130;
+        let client_X = event.clientX - (dark_zone.left + 20);
+        let client_Y = event.clientY - (dark_zone.top + 20);
         
         dragging_box.style.left = client_X + "px";
         dragging_box.style.top  = client_Y + "px";
-
-        other_boxes.forEach(function(current_box){
-            let current_box_coordinates   = current_box.getBoundingClientRect();
-            if(dragging_box != current_box){
-                /* Safe Box Check */
-                // if (get_this_box_coordinates.left >= get_safe_zone_coordinates.left){
-                //     dragging_box.classList.add("safe_box");
-                // } else {
-                //     dragging_box.classList.remove("safe_box");
-                // }
-                
-                /* Collision Check */
-                if (dragging_box_coordinates.bottom >= current_box_coordinates.top    &&
-                    dragging_box_coordinates.top    <= current_box_coordinates.bottom &&
-                    dragging_box_coordinates.right  >= current_box_coordinates.left   &&
-                    dragging_box_coordinates.left   <= current_box_coordinates.right){
-    
-                        dragging_box.classList.add("collide");
-                        current_box.classList.add("collide");
-                } else {
-                    dragging_box.classList.remove("collide");
-                    current_box.classList.remove("collide");
-                }
-            }
-        });
+        
+        checkBoxCollisions(dragging_box, dragging_box_coordinates);
     }
+}
+
+function checkBoxCollisions(dragging_box, dragging_box_coordinates){
+    let other_boxes     = document.querySelectorAll(".box_style:not(.drag_start)");
+    let is_box_coliding = false;
+
+    other_boxes.forEach(function(current_box){
+        let current_box_coordinates   = current_box.getBoundingClientRect();
+        console.log(isColliding(dragging_box_coordinates, current_box_coordinates));
+        // /* Collision Check */
+        if(isColliding(dragging_box_coordinates, current_box_coordinates)){ 
+            is_box_coliding = true;
+            current_box.classList.add("collide");
+
+        } else {
+            current_box.classList.remove("collide");
+        }
+
+        if(is_box_coliding){
+            dragging_box.classList.add("collide");
+
+        } else {
+            dragging_box.classList.remove("collide");
+        }
+    });
 }

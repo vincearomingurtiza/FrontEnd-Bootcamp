@@ -1,0 +1,141 @@
+*{
+    margin: 0px;
+
+    body{
+        background-color: #2C2D34;
+        
+        header{
+            background-color: #1E1F25;
+            margin-bottom: 50px;
+            
+            .container{
+                margin: 0px auto;
+                max-width: 800px;
+                
+                h1{
+                    color: #73D395;
+                    display: inline-block;
+                    font: normal 800 22px 'Proxima Nova';
+                    letter-spacing: 1px;
+                    padding: 20px 0px;
+                    text-transform: uppercase;
+                    vertical-align: middle;
+                }
+            }
+        }
+
+        section{
+            .container{
+                background-color: #1E1F25;
+                border-radius: 10px;
+                margin: 0px auto;
+                max-width: 1024px;
+                height: 700px;
+                overflow: hidden;
+
+                h3{
+                    border-bottom: solid 1px #2C2D34;
+                    color: #6D7186;
+                    font: normal 700 24px 'Proxima Nova';
+                    letter-spacing: 1px;
+                    margin-bottom: 20px;
+                    padding-bottom: 10px;
+                }
+
+                ul{
+                    font-size: 0px;
+                    height: 100%;
+                    width: 100%;
+                    padding: 0px;
+                    position: relative;
+
+                    #dark_zone{
+                        width: 75%;
+                        background-color: #1E1F25;
+                        height: 100%;
+                        display: inline-block;
+                        vertical-align: top;
+
+                        .box_style{
+                            display: inline-block;
+                            vertical-align: top;
+                            background-color: #73D395;
+                            height: 50px;
+                            width: 50px;
+                            border-radius: 4px;
+
+                            &:hover{
+                                opacity: 0.6;
+                            }
+                        }
+
+                        .box_0, .box_1, .box_2, .box_3, .box_4, .box_5, .box_6, .box_7, .box_8, .box_9{
+                            position: absolute;
+                            user-select: none;
+                        }
+
+                        .move_cursor{
+                            cursor: move;
+                        }
+
+                        .collide{
+                            background-color: #BE3B16 !important;
+                        }
+
+                        .safe_box{
+                            background-color: #3F84F7 !important;
+                        }
+                    }
+
+                    #safe_zone{
+                        width: 21%;
+                        background-color: #fff;
+                        display: inline-block;
+                        vertical-align: top;
+                        height: 100%;
+                        padding: 20px;
+
+                        h2{
+                            color: #3F84F7;
+                            font: normal 700 24px 'Proxima Nova';
+                            text-align: center;
+                            letter-spacing: 1px;
+                            border-bottom: solid 2px #3F84F7;
+                            padding-bottom: 10px;
+                        }
+
+                        .box_style{
+                            display: inline-block;
+                            vertical-align: top;
+                            background-color: #73D395;
+                            height: 50px;
+                            width: 50px;
+                            border-radius: 4px;
+
+                            &:hover{
+                                opacity: 0.6;
+                            }
+                        }
+
+                        .box_0, .box_1, .box_2, .box_3, .box_4, .box_5, .box_6, .box_7, .box_8, .box_9{
+                            position: absolute;
+                            user-select: none;
+                        }
+
+                        .move_cursor{
+                            cursor: move;
+                        }
+
+                        .safe_box{
+                            background-color: #3F84F7 !important;
+                        }
+
+                        .disable{
+                            pointer-events: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
