@@ -10,7 +10,7 @@ function duplicateBoxElement(){
     let dark_zone_element = document.querySelector("#dark_zone");
     let random_number_for_x = Math.floor(Math.random() * LEFT_MAX_COORDINATES);
     let random_number_for_y = Math.floor(Math.random() * TOP_MAX_COORDINATES);
-    let create_box = document.createElement("div");
+    let create_box = document.createElement("li");
     
     create_box.classList.add("box_" + recursion_count, "box_style");
     dark_zone_element.appendChild(create_box);
@@ -34,7 +34,6 @@ function duplicateBoxElement(){
 function onMouseDown(event){
     if (event.target.classList.contains("disable") == false){
         event.target.classList.add("drag_start");
-        event.target.classList.add("move_cursor");
     }
 }
 
@@ -56,7 +55,8 @@ function onMouseUp(event){
     else if (this_coordinates.right <= safe_zone_coordinates.right){
         dark_zone_element.appendChild(this_box_element);
     }
-    event.target.classList.remove("move_cursor");
+    event.target.classList.remove("drag_start");
+    
 }
 
 function isColliding (box_a, box_b){

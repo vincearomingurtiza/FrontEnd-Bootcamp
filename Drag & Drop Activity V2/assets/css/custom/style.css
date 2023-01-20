@@ -37,62 +37,34 @@
   margin-bottom: 20px;
   padding-bottom: 10px;
 }
-* body section .container ul {
+* body section .container #drag_zones {
   font-size: 0px;
   height: 100%;
   width: 100%;
   padding: 0px;
   position: relative;
 }
-* body section .container ul #dark_zone {
+* body section .container #drag_zones #dark_zone {
   width: 75%;
   background-color: #1E1F25;
   height: 100%;
   display: inline-block;
   vertical-align: top;
+  padding: 0px;
 }
-* body section .container ul #dark_zone .box_style {
-  display: inline-block;
-  vertical-align: top;
-  background-color: #73D395;
-  height: 50px;
-  width: 50px;
-  border-radius: 4px;
-}
-* body section .container ul #dark_zone .box_style:hover {
-  opacity: 0.6;
-}
-* body section .container ul #dark_zone .box_0,
-* body section .container ul #dark_zone .box_1,
-* body section .container ul #dark_zone .box_2,
-* body section .container ul #dark_zone .box_3,
-* body section .container ul #dark_zone .box_4,
-* body section .container ul #dark_zone .box_5,
-* body section .container ul #dark_zone .box_6,
-* body section .container ul #dark_zone .box_7,
-* body section .container ul #dark_zone .box_8,
-* body section .container ul #dark_zone .box_9 {
-  position: absolute;
-  user-select: none;
-}
-* body section .container ul #dark_zone .move_cursor {
-  cursor: move;
-}
-* body section .container ul #dark_zone .collide {
+* body section .container #drag_zones #dark_zone .collide {
   background-color: #BE3B16 !important;
 }
-* body section .container ul #dark_zone .safe_box {
-  background-color: #3F84F7 !important;
-}
-* body section .container ul #safe_zone {
-  width: 21%;
+* body section .container #drag_zones #safe_zone {
+  width: 25%;
   background-color: #fff;
   display: inline-block;
   vertical-align: top;
   height: 100%;
   padding: 20px;
+  padding: 0px;
 }
-* body section .container ul #safe_zone h2 {
+* body section .container #drag_zones #safe_zone h2 {
   color: #3F84F7;
   font: normal 700 24px 'Proxima Nova';
   text-align: center;
@@ -100,36 +72,25 @@
   border-bottom: solid 2px #3F84F7;
   padding-bottom: 10px;
 }
-* body section .container ul #safe_zone .box_style {
-  display: inline-block;
-  vertical-align: top;
-  background-color: #73D395;
-  height: 50px;
-  width: 50px;
-  border-radius: 4px;
-}
-* body section .container ul #safe_zone .box_style:hover {
-  opacity: 0.6;
-}
-* body section .container ul #safe_zone .box_0,
-* body section .container ul #safe_zone .box_1,
-* body section .container ul #safe_zone .box_2,
-* body section .container ul #safe_zone .box_3,
-* body section .container ul #safe_zone .box_4,
-* body section .container ul #safe_zone .box_5,
-* body section .container ul #safe_zone .box_6,
-* body section .container ul #safe_zone .box_7,
-* body section .container ul #safe_zone .box_8,
-* body section .container ul #safe_zone .box_9 {
-  position: absolute;
-  user-select: none;
-}
-* body section .container ul #safe_zone .move_cursor {
-  cursor: move;
-}
-* body section .container ul #safe_zone .safe_box {
+* body section .container #drag_zones #safe_zone .safe_box {
   background-color: #3F84F7 !important;
 }
-* body section .container ul #safe_zone .disable {
+* body section .container #drag_zones .box_style {
+  background-color: #73D395;
+  border-radius: 4px;
+  display: inline-block;
+  height: 50px;
+  position: absolute;
+  user-select: none;
+  vertical-align: top;
+  width: 50px;
+}
+* body section .container #drag_zones .box_style:hover {
+  opacity: 0.6;
+}
+* body section .container #drag_zones .box_style.drag_start {
+  cursor: move;
+}
+* body section .container #drag_zones .box_style.disable {
   pointer-events: none;
 }
