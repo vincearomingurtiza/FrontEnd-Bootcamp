@@ -86,7 +86,7 @@ body section .container #war_zone #battlefield .player_bullet {
   position: absolute;
   width: 13px;
 }
-body section .container #war_zone #enemy_spawn_zone {
+body section .container #war_zone #enemy_spawn_field {
   border-left: dashed 1px #1B1B1B;
   display: inline-block;
   height: 90%;
@@ -94,7 +94,7 @@ body section .container #war_zone #enemy_spawn_zone {
   vertical-align: top;
   width: 24.89%;
 }
-body section .container #war_zone #enemy_spawn_zone .enemy_style {
+body section .container #war_zone #enemy_spawn_field .enemy_style {
   background-size: cover;
   background: url("../../img/enemy.png") no-repeat;
   height: 40px;
@@ -102,7 +102,7 @@ body section .container #war_zone #enemy_spawn_zone .enemy_style {
   transition: 0.21s;
   width: 32px;
 }
-body section .container #war_zone #enemy_spawn_zone .enemy_bullet {
+body section .container #war_zone #enemy_spawn_field .enemy_bullet {
   background-image: url("../../img/enemy_bullet.png");
   display: inline-block;
   height: 6px;
