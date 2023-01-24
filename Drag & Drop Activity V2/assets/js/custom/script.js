@@ -59,24 +59,6 @@ function onMouseUp(event){
     
 }
 
-function isColliding (box_a, box_b){
-    let box_a_left   = parseInt(box_a.x);
-    let box_a_top    = parseInt(box_a.y);
-    let box_a_width  = parseInt(box_a.width);
-    let box_a_height = parseInt(box_a.height);
-
-    let box_b_left   = parseInt(box_b.x);
-    let box_b_top    = parseInt(box_b.y);
-    let box_b_width  = parseInt(box_b.width);
-    let box_b_height = parseInt(box_b.height);
-
-    return (
-        box_a_left < box_b_left   + box_b_width  &&
-        box_a_left + box_a_width  > box_b_left   &&
-        box_a_top  < box_b_top    + box_b_height &&
-        box_a_top  + box_a_height > box_b_top);   
-}
-
 function onMouseMove(event){
     let dark_zone                 = document.querySelector("#dark_zone").getBoundingClientRect();
     let safe_zone                 = document.querySelector("#safe_zone");
@@ -101,6 +83,24 @@ function onMouseMove(event){
         
         checkBoxCollisions(dragging_box, dragging_box_coordinates);
     }
+}
+
+function isColliding (box_a, box_b){
+    let box_a_left   = parseInt(box_a.x);
+    let box_a_top    = parseInt(box_a.y);
+    let box_a_width  = parseInt(box_a.width);
+    let box_a_height = parseInt(box_a.height);
+
+    let box_b_left   = parseInt(box_b.x);
+    let box_b_top    = parseInt(box_b.y);
+    let box_b_width  = parseInt(box_b.width);
+    let box_b_height = parseInt(box_b.height);
+
+    return (
+        box_a_left < box_b_left   + box_b_width  &&
+        box_a_left + box_a_width  > box_b_left   &&
+        box_a_top  < box_b_top    + box_b_height &&
+        box_a_top  + box_a_height > box_b_top);   
 }
 
 function checkBoxCollisions(dragging_box, dragging_box_coordinates){
