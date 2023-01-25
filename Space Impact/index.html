@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Space Impact</title>
     <link rel="stylesheet" href="./assets/css/custom/style.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script> -->
     <script src="./assets/js/custom/script.js"></script>
 </head>
 <body>
-    <header>
+    <header id="head">
         <div class="container">
             <h1><span>Space</span> Impact</h1>
         </div>
@@ -20,19 +20,27 @@
             <div id="war_zone">
                 <div id="life_block">
                     <h3>LIFE:</h3>
+                    <!-- <div class="boom"></div> -->
                 </div>
                 <div id="battlefield">
                     <!-- My spaceship here -->
-                    <div id="player">
-                        <!-- <span class="player_bullet"></span> -->
-                    </div>
+                    <div id="player"></div>
                 </div>
                 <ul id="enemy_spawn_field">
                     <!-- Enemy Spacecraft Spawn Here -->
-                    <li class="enemy_style" hidden></li>
                 </ul>
             </div>
         </div>
     </section>
+
+    <!-- Game Over Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-body">
+                <p>Game Over</p>
+                <button id="restart_btn">Restart</button>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

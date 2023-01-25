@@ -1,6 +1,27 @@
 * {
   margin: 0px;
 }
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
+@keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
 body {
   background-color: #2C2D34;
 }
@@ -45,7 +66,7 @@ body section .container #war_zone #life_block {
   border-bottom: dashed 1px #1B1B1B;
   display: block;
   padding: 15px 0px 10px 0px;
-  text-align: center;
+  text-align: left;
   width: 100%;
 }
 body section .container #war_zone #life_block h3 {
@@ -54,6 +75,7 @@ body section .container #war_zone #life_block h3 {
   font: normal 800 25px 'Proxima Nova';
   letter-spacing: 5px;
   vertical-align: middle;
+  padding-left: 30px;
 }
 body section .container #war_zone #life_block .heart_style {
   background-image: url("../../img/life.png");
@@ -78,6 +100,7 @@ body section .container #war_zone #battlefield #player {
   height: 40px;
   position: absolute;
   width: 40px;
+  z-index: 1;
 }
 body section .container #war_zone #battlefield .player_bullet {
   background-image: url("../../img/player_bullet.png");
@@ -85,6 +108,140 @@ body section .container #war_zone #battlefield .player_bullet {
   height: 6px;
   position: absolute;
   width: 13px;
+}
+body section .container #war_zone #battlefield .explosion {
+  position: absolute;
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  background-image: url("../../img/collide_explosion.png");
+}
+body section .container #war_zone #battlefield .boom {
+  position: absolute;
+  width: 100px;
+  border: dashed 1px #452727;
+  height: 100px;
+  text-align: right;
+}
+body section .container #war_zone #battlefield .boom_1 {
+  background: url("../../img/boom_1.png") no-repeat -25px -22px;
+}
+body section .container #war_zone #battlefield .boom_2 {
+  background: url("../../img/boom_1.png") no-repeat -130px -21px;
+}
+body section .container #war_zone #battlefield .boom_3 {
+  background: url("../../img/boom_1.png") no-repeat -236px -21px;
+}
+body section .container #war_zone #battlefield .boom_4 {
+  background: url("../../img/boom_1.png") no-repeat -341px -21px;
+}
+body section .container #war_zone #battlefield .boom_5 {
+  background: url("../../img/boom_1.png") no-repeat -446px -19px;
+}
+body section .container #war_zone #battlefield .boom_6 {
+  background: url("../../img/boom_1.png") no-repeat -552px -16px;
+}
+body section .container #war_zone #battlefield .boom_7 {
+  background: url("../../img/boom_1.png") no-repeat -657px -14px;
+}
+body section .container #war_zone #battlefield .boom_8 {
+  background: url("../../img/boom_1.png") no-repeat -760px -12px;
+}
+body section .container #war_zone #battlefield .boom_9 {
+  background: url("../../img/boom_1.png") no-repeat -18px -116px;
+}
+body section .container #war_zone #battlefield .boom_10 {
+  background: url("../../img/boom_1.png") no-repeat -121px -115px;
+}
+body section .container #war_zone #battlefield .boom_11 {
+  background: url("../../img/boom_1.png") no-repeat -224px -114px;
+}
+body section .container #war_zone #battlefield .boom_12 {
+  background: url("../../img/boom_1.png") no-repeat -328px -113px;
+}
+body section .container #war_zone #battlefield .boom_13 {
+  background: url("../../img/boom_1.png") no-repeat -432px -113px;
+}
+body section .container #war_zone #battlefield .boom_14 {
+  background: url("../../img/boom_1.png") no-repeat -536px -112px;
+}
+body section .container #war_zone #battlefield .boom_15 {
+  background: url("../../img/boom_1.png") no-repeat -640px -112px;
+}
+body section .container #war_zone #battlefield .boom_16 {
+  background: url("../../img/boom_1.png") no-repeat -745px -112px;
+}
+body section .container #war_zone #battlefield .boom_17 {
+  background: url("../../img/boom_1.png") no-repeat -5px -217px;
+}
+body section .container #war_zone #battlefield .boom_18 {
+  background: url("../../img/boom_1.png") no-repeat -110px -216px;
+}
+body section .container #war_zone #battlefield .boom_19 {
+  background: url("../../img/boom_1.png") no-repeat -215px -216px;
+}
+body section .container #war_zone #battlefield .boom_20 {
+  background: url("../../img/boom_1.png") no-repeat -320px -216px;
+}
+body section .container #war_zone #battlefield .boom_21 {
+  background: url("../../img/boom_1.png") no-repeat -425px -216px;
+}
+body section .container #war_zone #battlefield .boom_22 {
+  background: url("../../img/boom_1.png") no-repeat -530px -216px;
+}
+body section .container #war_zone #battlefield .boom_23 {
+  background: url("../../img/boom_1.png") no-repeat -636px -216px;
+}
+body section .container #war_zone #battlefield .boom_24 {
+  background: url("../../img/boom_1.png") no-repeat -741px -216px;
+}
+body section .container #war_zone #battlefield .boom_25 {
+  background: url("../../img/boom_1.png") no-repeat -2px -321px;
+}
+body section .container #war_zone #battlefield .boom_26 {
+  background: url("../../img/boom_1.png") no-repeat -107px -321px;
+}
+body section .container #war_zone #battlefield .boom_27 {
+  background: url("../../img/boom_1.png") no-repeat -213px -321px;
+}
+body section .container #war_zone #battlefield .boom_28 {
+  background: url("../../img/boom_1.png") no-repeat -318px -321px;
+}
+body section .container #war_zone #battlefield .boom_29 {
+  background: url("../../img/boom_1.png") no-repeat -423px -322px;
+}
+body section .container #war_zone #battlefield .boom_30 {
+  background: url("../../img/boom_1.png") no-repeat -528px -321px;
+}
+body section .container #war_zone #battlefield .boom_31 {
+  background: url("../../img/boom_1.png") no-repeat -422px -424px;
+}
+body section .container #war_zone #battlefield .boom_32 {
+  background: url("../../img/boom_1.png") no-repeat -527px -424px;
+}
+body section .container #war_zone #battlefield .boom_33 {
+  background: url("../../img/boom_1.png") no-repeat -636px -423px;
+}
+body section .container #war_zone #battlefield .boom_34 {
+  background: url("../../img/boom_1.png") no-repeat -748px -423px;
+}
+body section .container #war_zone #battlefield .boom_35 {
+  background: url("../../img/boom_1.png") no-repeat -9px -529px;
+}
+body section .container #war_zone #battlefield .boom_36 {
+  background: url("../../img/boom_1.png") no-repeat -116px -532px;
+}
+body section .container #war_zone #battlefield .boom_37 {
+  background: url("../../img/boom_1.png") no-repeat -223px -534px;
+}
+body section .container #war_zone #battlefield .boom_38 {
+  background: url("../../img/boom_1.png") no-repeat -337px -535px;
+}
+body section .container #war_zone #battlefield .boom_39 {
+  background: url("../../img/boom_1.png") no-repeat -443px -537px;
+}
+body section .container #war_zone #battlefield .boom_40 {
+  background: url("../../img/boom_1.png") no-repeat -548px -537px;
 }
 body section .container #war_zone #enemy_spawn_field {
   border-left: dashed 1px #1B1B1B;
@@ -110,4 +267,63 @@ body section .container #war_zone #enemy_spawn_field .enemy_bullet {
   position: absolute;
   top: 16px;
   width: 13px;
+}
+body .modal {
+  background-color: #000000;
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */
+  display: none;
+  /* Hidden by default */
+  height: 100%;
+  /* Full height */
+  left: 0;
+  overflow: auto;
+  /* Enable scroll if needed */
+  padding-top: 100px;
+  /* Location of the box */
+  position: fixed;
+  /* Stay in place */
+  top: 0;
+  width: 100%;
+  /* Full width */
+  z-index: 1;
+  /* Sit on top */
+}
+body .modal .modal-content {
+  border-radius: 5px;
+  position: relative;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #2C2D34;
+  width: 25%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+}
+body .modal .modal-content .modal-body {
+  text-align: center;
+}
+body .modal .modal-content .modal-body p {
+  color: #EC407A;
+  font: normal 800 25px 'Proxima Nova';
+  background-color: #1E1F25;
+  width: 100%;
+  text-transform: uppercase;
+  padding: 10px 0px;
+  letter-spacing: 2px;
+}
+body .modal .modal-content .modal-body #restart_btn {
+  background-color: #2C2D34;
+  border: none;
+  letter-spacing: 2px;
+  width: 100%;
+  color: #4285F4;
+  text-transform: uppercase;
+  font: normal 700 25px/50px 'Proxima Nova';
+}
+body .modal .modal-content .modal-body #restart_btn:hover {
+  background-color: #2f3246;
 }
