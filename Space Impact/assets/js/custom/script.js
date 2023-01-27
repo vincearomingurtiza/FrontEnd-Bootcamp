@@ -15,9 +15,19 @@ document.addEventListener("DOMContentLoaded", function(){
     playerMove();
     enemyMove();
     life();
-    playerBulletAndEnemyBulletCollision();
     movePlayerBullet();
 });
+
+/* Life */
+function life(){
+    let life_block = document.getElementById("life_block");
+    for(let counter = 1; counter <= life_count; counter++){
+        let create_life = document.createElement("span");
+        
+        create_life.classList.add("life_" + counter, "heart_style");
+        life_block.appendChild(create_life);
+    }
+}
 
 /* Gameover Modal */
 function gameOverModal(){
@@ -30,17 +40,6 @@ function gameOverModal(){
     });
 }
 
-/* Life */
-function life(){
-    let life_block = document.getElementById("life_block");
-    for(let counter = 1; counter <= life_count; counter++){
-        let create_life = document.createElement("span");
-
-        create_life.classList.add("life_" + counter, "heart_style");
-        life_block.appendChild(create_life);
-    }
-}
-
 /* Player Move Listener */
 function playerMove(){
     let player = document.querySelector("#player");
@@ -51,15 +50,12 @@ function playerMove(){
 
 /*Player Move Using Keyboard Event */
 function keyDown(event){
-    let battlefield = document.getElementById("battlefield")
     let player = document.getElementById("player");
     let add_move = 10;
-
 
     switch (event.which){
         case 37: case 65: {  /*Left & A */
             let player_x = parseInt(player.style.left) - add_move;
-            // console.log(player_x, document.getElementById("player").style.left);
             player.style.left = player_x + "px";
             break;
         }
@@ -89,10 +85,50 @@ function keyDown(event){
     }
 }
 
+/* Player Fires Bullet */
+function playerFiresBullet(){
+    let player = document.getElementById("player");
+    // let player_coordinates = player.getBoundingClientRect();
+
+    let battlefield = document.getElementById("battlefield");
+    let create_player_bullet = document.createElement("span");
+     
+    create_player_bullet.classList.add("player_bullet");
+    battlefield.appendChild(create_player_bullet);
+
+    let bullet_x = parseInt(player.style.left) + 30;
+    let bullet_y = parseInt(player.style.top)  + 16;
+
+    create_player_bullet.style.left = bullet_x + "px";
+    create_player_bullet.style.top  = bullet_y + "px";
+}
+
+/* Move bullet when fired */
+function movePlayerBullet(){
+    let player_bullet = document.querySelectorAll(".player_bullet");
+    let enemy = document.querySelectorAll(".enemy_style");
+    let add_move = 10;
+    
+    player_bullet.forEach(function(this_bullet){
+        let player_bullet_move = parseInt(this_bullet.style.left) + add_move;
+        this_bullet.style.left = player_bullet_move + "px";
+        
+        /* Remove player bullet element when reach its end point */
+        if (parseInt(this_bullet.style.left) > 1020){
+            this_bullet.remove();
+        }
+        playerBulletAndEnemyCollision();
+        playerBulletAndEnemyBulletCollision();
+    });
+    
+    setTimeout(function(){
+        movePlayerBullet();
+    }, 30);
+}
+
 /* Create/Spawn Enemy */
 function enemySpawn(){
     recursion_count++;
-
     let enemy_spawn_field = document.getElementById("enemy_spawn_field");
     let create_enemy = document.createElement("li");
     let random_number_x  = Math.floor(Math.random()* (963 - 767)) + 767;  /* Enemy spawn x-coordinates 767px - 984px */
@@ -104,32 +140,31 @@ function enemySpawn(){
     document.querySelector(".enemy_" + recursion_count).style.left = random_number_x + "px";
     document.querySelector(".enemy_" + recursion_count).style.top  = random_number_y + "px";
 
-        let create_enemy_bullet = document.createElement("div");
-        create_enemy_bullet.classList.add("enemy_bullet", "enemy_bullet_" + recursion_count);
-        enemy_spawn_field.appendChild(create_enemy_bullet);
+    let create_enemy_bullet = document.createElement("div");
+    create_enemy_bullet.classList.add("enemy_bullet", "enemy_bullet_" + recursion_count);
+    enemy_spawn_field.appendChild(create_enemy_bullet);
 
-        let enemy_bullet_x = random_number_x - 50;
-        let enemy_bullet_y = random_number_y + 15;
+    let enemy_bullet_x = random_number_x - 50;
+    let enemy_bullet_y = random_number_y + 15;
 
-        let get_this_number_to_push = Math.floor(Math.random() * (recursion_count - 1) + 1);
-        // console.log("push this: " + get_this_number_to_push);
+    let get_this_number_to_push = Math.floor(Math.random() * (recursion_count - 1) + 1);
 
-        document.querySelector(".enemy_bullet_" + recursion_count).style.left = enemy_bullet_x  + "px";
-        document.querySelector(".enemy_bullet_" + recursion_count).style.top  = enemy_bullet_y + "px";
-        
-        setTimeout(function(){
-            console.log("Life: " + life_count);
-            if (life_count > 0){
-                enemyFiresBullet();
-            }
+    document.querySelector(".enemy_bullet_" + recursion_count).style.left = enemy_bullet_x  + "px";
+    document.querySelector(".enemy_bullet_" + recursion_count).style.top  = enemy_bullet_y + "px";
+    
+    setTimeout(function(){
+        console.log("Life: " + life_count);
+        if (life_count > 0){
+            enemyFiresBullet();
+        }
 
-            // if (recursion_count < 5){
-                enemySpawn();
-            // }
+        // if (recursion_count < 5){
+            enemySpawn();
+        // }
     }, 1250);
 }
 
-/* Enemy Move */
+/* Enemy Move || Player and Enemy Collision*/
 function enemyMove(){
     let enemy_style   = document.querySelectorAll(".enemy_style");
     let enemy_bullet   = document.querySelectorAll(".enemy_bullet");
@@ -160,19 +195,18 @@ function enemyMove(){
             player_coordinates.right  >= this_enemy_coordinates.left   &&
             player_coordinates.left   <= this_enemy_coordinates.right){
             
+            console.log("Player X Enemy Collided");
             this_enemy.remove();
             life_array.push("Collided!");
-            console.log(life_array);
             player.style.left = "40px";
             player.style.top = "330px";
             
-            /* Enemy Bullet Move */
+            /* Create explosion */
             let battlefield = document.getElementById("battlefield");
             let create_explosion = document.createElement("div");
             
             create_explosion.classList.add("boom");
             battlefield.appendChild(create_explosion);
-            console.log("boom count: " + boom_count);
             
             let this_enemy_x = parseInt(this_enemy.style.left) - 50;
             let this_enemy_y = parseInt(this_enemy.style.top)  - 25;
@@ -180,15 +214,18 @@ function enemyMove(){
             create_explosion.style.left = this_enemy_x + "px";
             create_explosion.style.top  = this_enemy_y + "px";
 
+            /* Triggers player and enemy bullet collision */
             playerAndEnemyBulletCollision();
 
             /* Explosion Animation */
-            setTimeout(boomAnimation, 800);
+            setTimeout(function(){
+                let boom = document.querySelector(".boom");
+                boom.remove();
+            })
             boom_count++;
 
-            /* Life Check */
+            /* Life Update */
             let life = document.querySelector(".life_" + life_count);
-            console.log(life);
             life.remove();
             life_count--;
 
@@ -209,47 +246,6 @@ function enemyMove(){
     }, 100);
 }
 
-/* Player Fires Bullet */
-function playerFiresBullet(){
-    let player = document.getElementById("player");
-    // let player_coordinates = player.getBoundingClientRect();
-
-    let battlefield = document.getElementById("battlefield");
-    let create_player_bullet = document.createElement("span");
-    let add_this = 1;
-     
-    create_player_bullet.classList.add("player_bullet");
-    battlefield.appendChild(create_player_bullet);
-
-    let bullet_x = parseInt(player.style.left) + 30;
-    let bullet_y = parseInt(player.style.top)  + 16;
-
-    create_player_bullet.style.left = bullet_x + "px";
-    create_player_bullet.style.top  = bullet_y + "px";
-}
-
-/* Move bullet when fired */
-function movePlayerBullet(){
-    let player_bullet = document.querySelectorAll(".player_bullet");
-    let enemy = document.querySelectorAll(".enemy_style");
-    let add_move = 10;
-    
-    player_bullet.forEach(function(this_bullet){
-        let player_bullet_move = parseInt(this_bullet.style.left) + add_move;
-        this_bullet.style.left = player_bullet_move + "px";
-
-        /* Remove player bullet element when reach its end point */
-        if (parseInt(this_bullet.style.left) > 1020){
-            this_bullet.remove();
-        }
-        playerBulletAndEnemyCollision();
-    });
-    
-    setTimeout(function(){
-        movePlayerBullet();
-    }, 30);
-}
-
 /* Enemy Bullet Move */
 function enemyFiresBullet(){
     let enemy = document.querySelectorAll(".enemy_style");
@@ -262,23 +258,14 @@ function enemyFiresBullet(){
     playerAndEnemyBulletCollision();
 }
 
-function pewAnimation(){
-    let pew = document.querySelector(".pew");
-    pew.remove();
-}
-
-function boomAnimation(){
-    let boom = document.querySelector(".boom");
-    boom.remove();
-}
-
+/* Player Bullet - Enemy Bullet Collision */
 function playerBulletAndEnemyBulletCollision(){
     let enemy_bullet  = document.querySelectorAll(".enemy_bullet");
     let player_bullet = document.querySelectorAll(".player_bullet");
     
     player_bullet.forEach(function(this_player_bullet){
+        let player_bullet_coordinates = this_player_bullet.getBoundingClientRect();
         enemy_bullet.forEach(function(this_enemy_bullet){
-            let player_bullet_coordinates = this_player_bullet.getBoundingClientRect();
             let enemy_bullet_coordinates = this_enemy_bullet.getBoundingClientRect();
             
             if (player_bullet_coordinates.bottom >= enemy_bullet_coordinates.top    &&
@@ -286,8 +273,26 @@ function playerBulletAndEnemyBulletCollision(){
                 player_bullet_coordinates.right  >= enemy_bullet_coordinates.left   &&
                 player_bullet_coordinates.left   <= enemy_bullet_coordinates.right){
                     
-                console.log("HAHAHA BENG! BENG!");
-                alert();
+                console.log("P-Bullet X E-Bullet Collide");
+                this_player_bullet.remove()
+                this_enemy_bullet.remove()
+
+                let battlefield = document.getElementById("battlefield");
+                let create_explosion = document.createElement("div");
+
+                create_explosion.classList.add("spark");
+                battlefield.appendChild(create_explosion);
+
+                let player_bullet_x = parseInt(this_player_bullet.style.left) - 20;
+                let player_bullet_y = parseInt(this_player_bullet.style.top)  - 30;
+
+                create_explosion.style.left = player_bullet_x + "px";
+                create_explosion.style.top  = player_bullet_y + "px";
+
+                setTimeout(function(){
+                    let spark = document.querySelector(".spark");
+                    spark.remove();
+                }, 850);
             }
         })
     });
@@ -308,7 +313,7 @@ function playerBulletAndEnemyCollision(){
                 bullet_position.right  >= enemy_position.left   &&
                 bullet_position.left   <= enemy_position.right){
                 
-                console.log("collided!");
+                console.log("P-Bullet X Enemy Collide");
                 this_enemy.remove();
                 this_bullet.remove();
             
@@ -325,7 +330,10 @@ function playerBulletAndEnemyCollision(){
                 create_explosion.style.top  = enemy_y + "px";
 
                 /* Explosion Animation */
-                setTimeout(pewAnimation, 800);
+                setTimeout(function(){
+                   let pew = document.querySelector(".pew");
+                    pew.remove();
+                }, 800);
                 pew_count++;
             }
         });
@@ -367,7 +375,7 @@ function playerAndEnemyBulletCollision(){
  
             /* Life Check */
             let life = document.querySelector(".life_" + life_count);
-            console.log(life);
+            console.log("Player X Enemy Bullet Collide");
             life.remove();
             life_count--;
             
@@ -384,4 +392,4 @@ function playerAndEnemyBulletCollision(){
             }, 500);
         }
     });
-}
+}  
