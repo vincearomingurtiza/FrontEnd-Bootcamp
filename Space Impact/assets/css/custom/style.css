@@ -104,6 +104,13 @@ body section .container #war_zone #battlefield {
   vertical-align: top;
   width: 75%;
 }
+body section .container #war_zone #battlefield .enemy_bullet {
+  background-image: url("../../img/enemy_bullet.png");
+  display: inline-block;
+  height: 6px;
+  position: absolute;
+  width: 12px;
+}
 body section .container #war_zone #battlefield #player {
   background-size: cover;
   background: url("../../img/player.png") no-repeat;
@@ -165,14 +172,6 @@ body section .container #war_zone #enemy_spawn_field .enemy_style {
   position: absolute;
   transition: 0.21s;
   width: 32px;
-}
-body section .container #war_zone #enemy_spawn_field .enemy_bullet {
-  background-image: url("../../img/enemy_bullet.png");
-  display: inline-block;
-  height: 6px;
-  left: 45px;
-  position: absolute;
-  width: 12px;
 }
 body .modal {
   background-color: #000000;

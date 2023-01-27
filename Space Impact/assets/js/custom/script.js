@@ -1,14 +1,6 @@
-console.log("My script is in!");
 let recursion_count = 0; 
 let life_array = [];
-let enemy_bullet_array = [];
-let enemy_bullet_count = 1;
 let life_count = 3;
-let boom_count = 1;
-let pew_count = 1;
-
-let before = 0;
-let after  = 1;
 
 document.addEventListener("DOMContentLoaded", function(){
     enemySpawn();
@@ -16,6 +8,7 @@ document.addEventListener("DOMContentLoaded", function(){
     enemyMove();
     life();
     movePlayerBullet();
+    randomEnemyFiresABullet();
 });
 
 /* Life */
@@ -51,29 +44,29 @@ function playerMove(){
 /*Player Move Using Keyboard Event */
 function keyDown(event){
     let player = document.getElementById("player");
-    let add_move = 10;
+    let player_move = 10;
 
     switch (event.which){
         case 37: case 65: {  /*Left & A */
-            let player_x = parseInt(player.style.left) - add_move;
+            let player_x = parseInt(player.style.left) - player_move;
             player.style.left = player_x + "px";
             break;
         }
 
         case 38: case 87: {  /* Up & W */
-            let player_y = parseInt(player.style.top) - add_move;
+            let player_y = parseInt(player.style.top) - player_move;
             player.style.top = player_y + "px";
             break;
         }
 
         case 39: case 68: {  /* Right & D */
-            let player_x = parseInt(player.style.left) + add_move;
+            let player_x = parseInt(player.style.left) + player_move;
             player.style.left = player_x + "px";
             break;
         }
 
         case 40: case 83: {  /* Down & S */
-            let player_y = parseInt(player.style.top) + add_move;
+            let player_y = parseInt(player.style.top) + player_move;
             player.style.top = player_y + "px";
             break;
         }
@@ -107,10 +100,10 @@ function playerFiresBullet(){
 function movePlayerBullet(){
     let player_bullet = document.querySelectorAll(".player_bullet");
     let enemy = document.querySelectorAll(".enemy_style");
-    let add_move = 10;
+    let player_bullet_speed = 16;
     
     player_bullet.forEach(function(this_bullet){
-        let player_bullet_move = parseInt(this_bullet.style.left) + add_move;
+        let player_bullet_move = parseInt(this_bullet.style.left) + player_bullet_speed;
         this_bullet.style.left = player_bullet_move + "px";
         
         /* Remove player bullet element when reach its end point */
@@ -126,7 +119,7 @@ function movePlayerBullet(){
     }, 30);
 }
 
-/* Create/Spawn Enemy */
+/* Create/Spawn Enemy || Enemy fires a bullet */
 function enemySpawn(){
     recursion_count++;
     let enemy_spawn_field = document.getElementById("enemy_spawn_field");
@@ -139,23 +132,11 @@ function enemySpawn(){
     /* Set Enemy Position */
     document.querySelector(".enemy_" + recursion_count).style.left = random_number_x + "px";
     document.querySelector(".enemy_" + recursion_count).style.top  = random_number_y + "px";
-
-    let create_enemy_bullet = document.createElement("div");
-    create_enemy_bullet.classList.add("enemy_bullet", "enemy_bullet_" + recursion_count);
-    enemy_spawn_field.appendChild(create_enemy_bullet);
-
-    let enemy_bullet_x = random_number_x - 50;
-    let enemy_bullet_y = random_number_y + 15;
-
-    let get_this_number_to_push = Math.floor(Math.random() * (recursion_count - 1) + 1);
-
-    document.querySelector(".enemy_bullet_" + recursion_count).style.left = enemy_bullet_x  + "px";
-    document.querySelector(".enemy_bullet_" + recursion_count).style.top  = enemy_bullet_y + "px";
     
     setTimeout(function(){
         console.log("Life: " + life_count);
         if (life_count > 0){
-            enemyFiresBullet();
+            // enemyBulletMove();
         }
 
         // if (recursion_count < 5){
@@ -170,20 +151,24 @@ function enemyMove(){
     let enemy_bullet   = document.querySelectorAll(".enemy_bullet");
     let player = document.getElementById("player");
     let player_coordinates = player.getBoundingClientRect();
-    let add_this = 8;
-    let enemy_bullet_move = 10;
+    let enemy_move_speed = 8;
+    let enemy_bullet_move = 16;
 
+    /* Enemy bullet move */
     enemy_bullet.forEach(function(this_bullet){
         let bullet_move = parseInt(this_bullet.style.left) - enemy_bullet_move;
         this_bullet.style.left = bullet_move + "px";
+        /* Remove enemy bullet element when reach its end point */
+        if (parseInt(this_bullet.style.left) < 0){
+            this_bullet.remove();
+        }
     });
     
     enemy_style.forEach(function(this_enemy){
-        let enemy_move = parseInt(this_enemy.style.left) - add_this;
+        let enemy_move = parseInt(this_enemy.style.left) - enemy_move_speed;
         let this_enemy_coordinates = this_enemy.getBoundingClientRect();
         this_enemy.style.left = enemy_move + "px";
         
-        console.log("------");
         /* Remove enemy element when reach its end point */
         if (parseInt(this_enemy.style.left) < 0){
             this_enemy.remove();
@@ -221,8 +206,7 @@ function enemyMove(){
             setTimeout(function(){
                 let boom = document.querySelector(".boom");
                 boom.remove();
-            })
-            boom_count++;
+            }, 800);
 
             /* Life Update */
             let life = document.querySelector(".life_" + life_count);
@@ -243,18 +227,7 @@ function enemyMove(){
         if (life_array.length < 3){
             enemyMove();
         }
-    }, 100);
-}
-
-/* Enemy Bullet Move */
-function enemyFiresBullet(){
-    let enemy = document.querySelectorAll(".enemy_style");
-    let add_move = 10;
-
-    enemy.forEach(function(this_enemy){
-        let enemy_bullet_move = parseInt(this_enemy.style.left) + add_move;
-        this_enemy.style.left = enemy_bullet_move + "px"
-    });
+    }, 42);
     playerAndEnemyBulletCollision();
 }
 
@@ -334,7 +307,6 @@ function playerBulletAndEnemyCollision(){
                    let pew = document.querySelector(".pew");
                     pew.remove();
                 }, 800);
-                pew_count++;
             }
         });
     });
@@ -389,7 +361,44 @@ function playerAndEnemyBulletCollision(){
 
             setTimeout(function(){
                 create_player_enemy_bullet_explosion.remove();
-            }, 500);
+            }, 800);
         }
     });
-}  
+}
+
+function randomEnemyFiresABullet(){
+    console.log("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+
+    let battlefield = document.querySelector("#battlefield");
+    let create_enemy_bullet = document.createElement("span");
+    
+    create_enemy_bullet.classList.add("enemy_bullet");
+    battlefield.appendChild(create_enemy_bullet);
+
+    // let random_enemy = document.querySelector(".enemy_" + enemy_index);
+    let enemy_style   = document.querySelectorAll(".enemy_style");
+    // console.log(enemy_style.length);
+    
+    
+    let enemy_index = Math.floor(Math.random()* enemy_style.length);
+    console.log(enemy_style[enemy_index]);
+    
+    let random_enemy = enemy_style[enemy_index];
+    console.log(random_enemy);
+
+
+    console.log("------------------------");
+    console.log(enemy_style);
+    // console.log(enemy_index);
+    /* Todo:
+        Get a random Enemy from enemy_style */
+    let random_enemy_x = parseInt(random_enemy.style.left);
+    let random_enemy_y = parseInt(random_enemy.style.top) + 16;
+
+    create_enemy_bullet.style.left = random_enemy_x + "px";
+    create_enemy_bullet.style.top = random_enemy_y + "px";
+    
+    setTimeout(function(){
+        randomEnemyFiresABullet();
+    }, 250);
+}
