@@ -1,25 +1,36 @@
-let recursion_count = 0; 
-let life_array = [];
+let enemy_spawn_count = 0; 
 let life_count = 3;
+const ENEMY_START_X = 767;
+const ENEMY_END_X   = 963;
+const ENEMY_START_Y = 62;
+const ENEMY_END_Y   = 600;
+const ENEMY_BULLET_SPEED = 16;
+const ENEMY_MOVE_SPEED = 8;
+const PLAYER_BULLET_SPEED = 16;
+const BATTLEFIELD_WIDTH = 1020;
 
 document.addEventListener("DOMContentLoaded", function(){
+    showLifeCount();
+    initializePlayer();
     enemySpawn();
-    playerMove();
     enemyMove();
-    life();
     movePlayerBullet();
     randomEnemyFiresABullet();
 });
 
 /* Life */
-function life(){
+function showLifeCount(){
     let life_block = document.getElementById("life_block");
+    life_block.innerHTML = "";
     for(let counter = 1; counter <= life_count; counter++){
         let create_life = document.createElement("span");
         
         create_life.classList.add("life_" + counter, "heart_style");
         life_block.appendChild(create_life);
     }
+    setTimeout(function(){
+        showLifeCount();
+    }, 17);
 }
 
 /* Gameover Modal */
@@ -34,15 +45,16 @@ function gameOverModal(){
 }
 
 /* Player Move Listener */
-function playerMove(){
+function initializePlayer(){
     let player = document.querySelector("#player");
     player.style.left = "40px";
     player.style.top = "330px";
-    document.addEventListener("keydown", keyDown);
+    document.removeEventListener("keydown", playerMove);
+    document.addEventListener("keydown", playerMove);
 }
 
 /*Player Move Using Keyboard Event */
-function keyDown(event){
+function playerMove(event){
     let player = document.getElementById("player");
     let player_move = 10;
 
@@ -98,93 +110,86 @@ function playerFiresBullet(){
 
 /* Move bullet when fired */
 function movePlayerBullet(){
-    let player_bullet = document.querySelectorAll(".player_bullet");
-    let enemy = document.querySelectorAll(".enemy_style");
-    let player_bullet_speed = 16;
+    let player_bullets = document.querySelectorAll(".player_bullet");
     
-    player_bullet.forEach(function(this_bullet){
-        let player_bullet_move = parseInt(this_bullet.style.left) + player_bullet_speed;
-        this_bullet.style.left = player_bullet_move + "px";
+    player_bullets.forEach(function(active_bullet){
+        let player_bullet_position = parseInt(active_bullet.style.left) + PLAYER_BULLET_SPEED;
+        active_bullet.style.left = player_bullet_position + "px";
         
-        /* Remove player bullet element when reach its end point */
-        if (parseInt(this_bullet.style.left) > 1020){
-            this_bullet.remove();
-        }
         playerBulletAndEnemyCollision();
         playerBulletAndEnemyBulletCollision();
+
+        /* Remove player bullet element when reach its end point */
+        if (parseInt(active_bullet.style.left) > BATTLEFIELD_WIDTH){
+            active_bullet.remove();
+        }
     });
     
     setTimeout(function(){
         movePlayerBullet();
-    }, 30);
+    }, 42);
 }
 
 /* Create/Spawn Enemy || Enemy fires a bullet */
 function enemySpawn(){
-    recursion_count++;
+    enemy_spawn_count++;
     let enemy_spawn_field = document.getElementById("enemy_spawn_field");
     let create_enemy = document.createElement("li");
-    let random_number_x  = Math.floor(Math.random()* (963 - 767)) + 767;  /* Enemy spawn x-coordinates 767px - 984px */
-    let random_number_y  = Math.floor(Math.random()* (600 - 62))  + 62;   /* Enemy spawn y-coordinates 0px - 610px */
+    let random_number_x  = Math.floor(Math.random()* (ENEMY_END_X - ENEMY_START_X)) + ENEMY_START_X;  /* Enemy spawn x-coordinates 767px - 984px */
+    let random_number_y  = Math.floor(Math.random()* (ENEMY_END_Y - ENEMY_START_Y)) + ENEMY_START_Y;   /* Enemy spawn y-coordinates 0px - 610px */
     
-    create_enemy.classList.add("enemy_" + recursion_count, "enemy_style");
+    create_enemy.classList.add("enemy_" + enemy_spawn_count, "enemy_style");
     enemy_spawn_field.appendChild(create_enemy);
     /* Set Enemy Position */
-    document.querySelector(".enemy_" + recursion_count).style.left = random_number_x + "px";
-    document.querySelector(".enemy_" + recursion_count).style.top  = random_number_y + "px";
+    create_enemy.style.left = random_number_x + "px";
+    create_enemy.style.top  = random_number_y + "px";
     
     setTimeout(function(){
-        console.log("Life: " + life_count);
-        if (life_count > 0){
-            // enemyBulletMove();
-        }
-
-        // if (recursion_count < 5){
-            enemySpawn();
-        // }
+        enemySpawn();
     }, 1250);
 }
 
-/* Enemy Move || Player and Enemy Collision*/
-function enemyMove(){
-    let enemy_style   = document.querySelectorAll(".enemy_style");
+/* Enemy bullet move */
+function enemyBulletMove(){
     let enemy_bullet   = document.querySelectorAll(".enemy_bullet");
-    let player = document.getElementById("player");
-    let player_coordinates = player.getBoundingClientRect();
-    let enemy_move_speed = 8;
-    let enemy_bullet_move = 16;
-
-    /* Enemy bullet move */
     enemy_bullet.forEach(function(this_bullet){
-        let bullet_move = parseInt(this_bullet.style.left) - enemy_bullet_move;
+        let bullet_move = parseInt(this_bullet.style.left) - ENEMY_BULLET_SPEED;
         this_bullet.style.left = bullet_move + "px";
         /* Remove enemy bullet element when reach its end point */
         if (parseInt(this_bullet.style.left) < 0){
             this_bullet.remove();
         }
     });
+}
+
+/* Enemy Move || Player and Enemy Collision*/
+function enemyMove(){
+    let enemies   = document.querySelectorAll(".enemy_style");
+    let player = document.getElementById("player");
+    let player_coordinates = player.getBoundingClientRect();
+
+    /* Enemy bullet move trigger */
+    enemyBulletMove();
     
-    enemy_style.forEach(function(this_enemy){
-        let enemy_move = parseInt(this_enemy.style.left) - enemy_move_speed;
-        let this_enemy_coordinates = this_enemy.getBoundingClientRect();
-        this_enemy.style.left = enemy_move + "px";
+    enemies.forEach(function(active_enemy){
+        let active_enemy_position = parseInt(active_enemy.style.left) - ENEMY_MOVE_SPEED;
+        let active_enemy_coordinates = active_enemy.getBoundingClientRect();
+        active_enemy.style.left = active_enemy_position + "px";
         
         /* Remove enemy element when reach its end point */
-        if (parseInt(this_enemy.style.left) < 0){
-            this_enemy.remove();
+        if (parseInt(active_enemy.style.left) < (active_enemy_coordinates.width * -1)){
+            active_enemy.remove();
         }
 
         /*  Check player and enemy collision */
-        if (player_coordinates.bottom >= this_enemy_coordinates.top    &&
-            player_coordinates.top    <= this_enemy_coordinates.bottom &&
-            player_coordinates.right  >= this_enemy_coordinates.left   &&
-            player_coordinates.left   <= this_enemy_coordinates.right){
+        if (player_coordinates.bottom >= active_enemy_coordinates.top    &&
+            player_coordinates.top    <= active_enemy_coordinates.bottom &&
+            player_coordinates.right  >= active_enemy_coordinates.left   &&
+            player_coordinates.left   <= active_enemy_coordinates.right){
             
             console.log("Player X Enemy Collided");
-            this_enemy.remove();
-            life_array.push("Collided!");
-            player.style.left = "40px";
-            player.style.top = "330px";
+            active_enemy.remove();
+            initializePlayer();
             
             /* Create explosion */
             let battlefield = document.getElementById("battlefield");
@@ -193,42 +198,37 @@ function enemyMove(){
             create_explosion.classList.add("boom");
             battlefield.appendChild(create_explosion);
             
-            let this_enemy_x = parseInt(this_enemy.style.left) - 50;
-            let this_enemy_y = parseInt(this_enemy.style.top)  - 25;
+            let active_enemy_x = parseInt(active_enemy.style.left);
+            let active_enemy_y = parseInt(active_enemy.style.top);
             
-            create_explosion.style.left = this_enemy_x + "px";
-            create_explosion.style.top  = this_enemy_y + "px";
-
-            /* Triggers player and enemy bullet collision */
-            playerAndEnemyBulletCollision();
+            create_explosion.style.left = active_enemy_x + "px";
+            create_explosion.style.top  = active_enemy_y + "px";
 
             /* Explosion Animation */
             setTimeout(function(){
                 let boom = document.querySelector(".boom");
                 boom.remove();
-            }, 800);
+            }, 480);
 
             /* Life Update */
-            let life = document.querySelector(".life_" + life_count);
-            life.remove();
             life_count--;
 
             /* Gameover */
-            if (life_array.length == 3){
-                document.removeEventListener("keydown", keyDown);
+            if (life_count == 0){
+                document.removeEventListener("keydown", playerMove);
                 player.remove();
                 gameOverModal();
                 console.log("Gameover");
             }    
         }
     });
-
+    /* Triggers player and enemy bullet collision */
+    playerAndEnemyBulletCollision();
     setTimeout(function(){
-        if (life_array.length < 3){
+        if (life_count > 0){
             enemyMove();
         }
     }, 42);
-    playerAndEnemyBulletCollision();
 }
 
 /* Player Bullet - Enemy Bullet Collision */
@@ -238,8 +238,8 @@ function playerBulletAndEnemyBulletCollision(){
     
     player_bullet.forEach(function(this_player_bullet){
         let player_bullet_coordinates = this_player_bullet.getBoundingClientRect();
-        enemy_bullet.forEach(function(this_enemy_bullet){
-            let enemy_bullet_coordinates = this_enemy_bullet.getBoundingClientRect();
+        enemy_bullet.forEach(function(active_enemy_bullet){
+            let enemy_bullet_coordinates = active_enemy_bullet.getBoundingClientRect();
             
             if (player_bullet_coordinates.bottom >= enemy_bullet_coordinates.top    &&
                 player_bullet_coordinates.top    <= enemy_bullet_coordinates.bottom &&
@@ -248,7 +248,7 @@ function playerBulletAndEnemyBulletCollision(){
                     
                 console.log("P-Bullet X E-Bullet Collide");
                 this_player_bullet.remove()
-                this_enemy_bullet.remove()
+                active_enemy_bullet.remove()
 
                 let battlefield = document.getElementById("battlefield");
                 let create_explosion = document.createElement("div");
@@ -277,8 +277,8 @@ function playerBulletAndEnemyCollision(){
     let enemy = document.querySelectorAll(".enemy_style");
     
     player_bullet.forEach(function(this_bullet){
-        enemy.forEach(function(this_enemy){
-            let enemy_position  = this_enemy.getBoundingClientRect();
+        enemy.forEach(function(active_enemy){
+            let enemy_position  = active_enemy.getBoundingClientRect();
             let bullet_position = this_bullet.getBoundingClientRect();
 
             if (bullet_position.bottom >= enemy_position.top    &&
@@ -287,7 +287,7 @@ function playerBulletAndEnemyCollision(){
                 bullet_position.left   <= enemy_position.right){
                 
                 console.log("P-Bullet X Enemy Collide");
-                this_enemy.remove();
+                active_enemy.remove();
                 this_bullet.remove();
             
                 let battlefield = document.querySelector("#battlefield");
@@ -296,8 +296,8 @@ function playerBulletAndEnemyCollision(){
                 create_explosion.classList.add("pew");
                 battlefield.appendChild(create_explosion);
 
-                let enemy_x = parseInt(this_enemy.style.left) - 50;
-                let enemy_y = parseInt(this_enemy.style.top)  - 25;
+                let enemy_x = parseInt(active_enemy.style.left) - 50;
+                let enemy_y = parseInt(active_enemy.style.top)  - 25;
 
                 create_explosion.style.left = enemy_x + "px";
                 create_explosion.style.top  = enemy_y + "px";
@@ -315,20 +315,19 @@ function playerBulletAndEnemyCollision(){
 /* Player and Enemy Bullet */
 function playerAndEnemyBulletCollision(){
     let player = document.querySelector("#player");
-    let enemy_bullet = document.querySelectorAll(".enemy_bullet");
+    let enemy_bullets = document.querySelectorAll(".enemy_bullet");
     let player_coordinates = player.getBoundingClientRect();
     
-    enemy_bullet.forEach(function(this_this_enemy_bullet){
-        let this_enemy_bullet_coordinates = this_this_enemy_bullet.getBoundingClientRect();
+    enemy_bullets.forEach(function(active_enemy_bullet){
+        let active_enemy_bullet_coordinates = active_enemy_bullet.getBoundingClientRect();
 
         /* Player and enemy bullet collision */
-        if (player_coordinates.bottom >= this_enemy_bullet_coordinates.top    &&
-            player_coordinates.top    <= this_enemy_bullet_coordinates.bottom &&
-            player_coordinates.right  >= this_enemy_bullet_coordinates.left   &&
-            player_coordinates.left   <= this_enemy_bullet_coordinates.right){
+        if (player_coordinates.bottom >= active_enemy_bullet_coordinates.top    &&
+            player_coordinates.top    <= active_enemy_bullet_coordinates.bottom &&
+            player_coordinates.right  >= active_enemy_bullet_coordinates.left   &&
+            player_coordinates.left   <= active_enemy_bullet_coordinates.right){
 
-            this_this_enemy_bullet.remove();
-            life_array.push("Collided!");
+            active_enemy_bullet.remove();
             player.style.left = "40px";
             player.style.top  = "330px";
 
@@ -339,21 +338,18 @@ function playerAndEnemyBulletCollision(){
             create_player_enemy_bullet_explosion.classList.add("boom");
             battlefield.appendChild(create_player_enemy_bullet_explosion);
             
-            let enemy_bullet_x = parseInt(this_this_enemy_bullet.style.left) - 40;
-            let enemy_bullet_y = parseInt(this_this_enemy_bullet.style.top)  - 40;
+            let enemy_bullet_x = parseInt(active_enemy_bullet.style.left) - 40;
+            let enemy_bullet_y = parseInt(active_enemy_bullet.style.top)  - 40;
 
             create_player_enemy_bullet_explosion.style.left = enemy_bullet_x + "px";
             create_player_enemy_bullet_explosion.style.top  = enemy_bullet_y + "px";
  
             /* Life Check */
-            let life = document.querySelector(".life_" + life_count);
-            console.log("Player X Enemy Bullet Collide");
-            life.remove();
             life_count--;
             
             /* Gameover */
-            if (life_array.length == 3){
-                document.removeEventListener("keydown", keyDown);
+            if (life_count == 0){
+                document.removeEventListener("keydown", playerMove);
                 player.remove();
                 gameOverModal();
                 console.log("Gameover");
@@ -367,8 +363,6 @@ function playerAndEnemyBulletCollision(){
 }
 
 function randomEnemyFiresABullet(){
-    console.log("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
-
     let battlefield = document.querySelector("#battlefield");
     let create_enemy_bullet = document.createElement("span");
     
@@ -376,19 +370,13 @@ function randomEnemyFiresABullet(){
     battlefield.appendChild(create_enemy_bullet);
 
     // let random_enemy = document.querySelector(".enemy_" + enemy_index);
-    let enemy_style   = document.querySelectorAll(".enemy_style");
+    let enemies   = document.querySelectorAll(".enemy_style");
     // console.log(enemy_style.length);
     
+    let enemy_index = Math.floor(Math.random()* enemies.length);
+    console.log(enemies[enemy_index]);
     
-    let enemy_index = Math.floor(Math.random()* enemy_style.length);
-    console.log(enemy_style[enemy_index]);
-    
-    let random_enemy = enemy_style[enemy_index];
-    console.log(random_enemy);
-
-
-    console.log("------------------------");
-    console.log(enemy_style);
+    let random_enemy = enemies[enemy_index];
     // console.log(enemy_index);
     /* Todo:
         Get a random Enemy from enemy_style */
