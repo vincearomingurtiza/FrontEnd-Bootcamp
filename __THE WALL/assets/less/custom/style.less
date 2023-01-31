@@ -1,0 +1,160 @@
+body{
+    background-color: #2C2D34;
+
+    #wrapper{
+        max-width: 974px;
+        margin: 0px auto;
+        margin-top: 220px;
+        // height: 671px;
+        background-color: #3B3C43;
+        border-radius: 20px;
+        font-size: 0px;
+        overflow: hidden;
+        
+        #sign_up_block{
+            background-color: #1D1F2B;
+            width: 589px;
+            max-width: 671px;
+            display: inline-block;
+            vertical-align: top;
+            padding: 75px 78px;
+            
+            img{
+                display: inline-block;
+                vertical-align: top;
+                margin-right: 30px;
+            }
+            
+            ul{
+                padding: 0px;
+                display: inline-block;
+                vertical-align: top;
+                list-style: none;
+                
+                li:nth-child(1){
+                    font: normal 400 21px/17px 'Roboto', sans-serif;
+                    color: #fff;
+                    margin-bottom: 8px;
+                }
+
+                li:nth-child(2){
+                    font: normal 400 17.5108px 'Roboto', sans-serif;
+                    color: #6D7186;
+                }
+            }
+
+            form{
+                margin-top: 50px;
+
+                &#login_form{
+                    p{
+                        margin: 0px 0px 118px 0px;
+                    }
+                }
+
+                div{
+                    label{
+                        font: normal 500 14px/16px 'Roboto', sans-serif;
+                        color: #6D7186;
+                        display: block;
+                        margin-bottom: 12px;
+                        text-align: left;
+                        margin-top: 20px;
+                    }
+
+                    .input_style{
+                        border-radius: 9px;
+                        background-color: #31354F;
+                        padding: 25px 20px;
+                        font: normal 400 16px/16px 'Roboto', sans-serif;
+                        color: #fff;
+                        border: none;
+
+                        &:focus{
+                            outline: 1px solid #00A3FF;
+                        }
+                    }
+                }
+
+                .error{
+                    &:focus{
+                        outline: 1px solid #EB5757 !important;
+                    }
+                }                
+
+                #fname_block{
+                    display: inline-block;
+                    vertical-align: top;
+                    margin-right: 18px;
+
+                        #first_name{
+                            width: 237px;
+                        }
+                }
+
+                #lname_block{
+                    display: inline-block;
+                    vertical-align: top;
+                    #last_name{
+                        width: 237px;
+                    }
+                }
+
+                #email_block, #password_block{
+                    input{
+                        width: 532px;
+                    }
+                }
+                
+                #signup_btn{
+                    font: normal 700 21px/25px 'Roboto', sans-serif;
+                    width: 572px;
+                    height: 60px;
+                    background-color: #00A3FF;
+                    border-radius: 9px;
+                    color: #fff;
+                    margin: 33px 0px 42px 0px;
+                    border: none;
+                    transition: 0.21s;
+
+                    &:hover{
+                        background-color: #1961CD;
+                    }
+                }
+
+                p{
+                    font: normal 400 17.5108px/21px 'Roboto', sans-serif;
+                    color: #6D7186;
+                    text-align: center;
+                    margin: 0px 0px 3px 0px;
+                    
+                    a{
+                        font: normal 400 17.5108px/21px 'Roboto', sans-serif;
+                        display: inline-block;
+                        color: #00A3FF;
+                        text-decoration: none;
+
+                        &:hover{
+                            opacity: 0.8;
+                        }
+                    }
+                }
+            }
+        }
+
+        #the_wall_block{
+            display: inline-block;
+            vertical-align: top;
+            padding: 75px 51px 133px 51px;
+            width: 126px;
+            background-image: url("../../img/background_image.png");
+            background-size: cover;
+
+            p{
+                color: #fff;
+                font: normal 400 25.55px/30px 'Roboto', sans-serif;
+                letter-spacing: 0.36em;
+            }
+        }
+    }
+}
