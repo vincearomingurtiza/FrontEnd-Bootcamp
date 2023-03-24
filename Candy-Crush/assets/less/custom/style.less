@@ -1,0 +1,82 @@
+*{
+    margin: 0;
+    body{
+        background-color: #2C2D34;
+        header{
+            background-color: #1E1F25;
+            margin-bottom: 50px;
+            .container{
+                margin: 0px auto;
+                max-width: 746px !important;
+                h1{
+                    background: -webkit-linear-gradient(#bda33c, #cf7920);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    -webkit-text-stroke: 0.25px #fff;
+                    display: inline-block;
+                    font: normal 800 22px 'Proxima Nova';
+                    letter-spacing: 1px;
+                    padding: 20px 0px;
+                    text-transform: uppercase;
+                    vertical-align: middle;
+                }
+            }
+        }
+        section{
+            #container{
+                border-radius: 10px;
+                margin: 0px auto;
+                max-width: 746px;
+                #candy_container{
+                    tr{
+                        td{
+                            background-color: #B0BAE7;
+                            border-radius: 4px;
+                            box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+                            height: 120px;
+                            margin: 2px;
+                            transition: 0.21s;
+                            width: 120px;
+                            &.candy_1{
+                                background-image: url("../../img/red.png");
+                            }
+                            &.candy_2{
+                                background-image: url("../../img/orange.png");
+                            }
+                            &.candy_3{
+                                background-image: url("../../img/yellow.png");
+                            }
+                            &.candy_4{
+                                background-image: url("../../img/green.png");
+                            }
+                            &.candy_5{
+                                background-image: url("../../img/blue.png");
+                            }
+                            &.candy_6{
+                                background-image: url("../../img/violet.png");
+                            }
+                            &:hover{
+                                opacity: 0.9;
+                            }
+                            &.disable{
+                                pointer-events: none;
+                                opacity: 0.3;
+                            }
+                            &.active_click{
+                                // background-color: #DDD6CC !important;
+                            }
+                            &.swap{
+                                // background-color: #DDD6CC !important;
+                            }
+                            &.match{
+                                background-color: #2C2D34 !important;
+                                opacity: 0.3;
+                                // background-image: none;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

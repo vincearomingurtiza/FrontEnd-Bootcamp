@@ -7,10 +7,10 @@ document.addEventListener("DOMContentLoaded", function(){
 });
 
 function duplicateBoxElement(){
-    let dark_zone_element = document.querySelector("#dark_zone");
+    let dark_zone_element   = document.querySelector("#dark_zone");
     let random_number_for_x = Math.floor(Math.random() * LEFT_MAX_COORDINATES);
     let random_number_for_y = Math.floor(Math.random() * TOP_MAX_COORDINATES);
-    let create_box = document.createElement("li");
+    let create_box          = document.createElement("li");
     
     create_box.classList.add("box_" + recursion_count, "box_style");
     dark_zone_element.appendChild(create_box);
